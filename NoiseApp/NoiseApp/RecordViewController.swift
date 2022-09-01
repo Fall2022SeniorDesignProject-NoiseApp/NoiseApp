@@ -14,11 +14,13 @@ import AVFoundation
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
     // UI elements
+    @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
     // Allows us to use the audio recorder
     var audioRecorder: AVAudioRecorder!
+    var levelTimer = Timer()
     
     // Called when this view is first loaded into memory (used for additional initialization steps)
     override func viewDidLoad()
@@ -54,6 +56,17 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
         // Begin recording
         audioRecorder.record()
+        
+        self.levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
+    }
+    
+    //This selector/function is called every time our timer (levelTime) fires
+    @objc func levelTimerCallback()
+    {
+        //we have to update meters before we can get the metering values
+        audioRecorder.updateMeters()
+        let dBFS = audioRecorder.averagePower(forChannel: 0)
+        decibel.text = String(format: "%.0f", dBFS)
     }
     
     @IBAction func pressedStopRecording(_ sender: UIButton)
