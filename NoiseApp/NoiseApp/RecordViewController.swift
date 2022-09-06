@@ -30,6 +30,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         stopRecordingButton.isEnabled = false
     }
     
+    // Locks in app in portrait mode
+    override var shouldAutorotate: Bool {return false}
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait}
+    
     @IBAction func pressedRecord(_ sender: UIButton)
     {
         // Keeps the record button disabled while already recording
