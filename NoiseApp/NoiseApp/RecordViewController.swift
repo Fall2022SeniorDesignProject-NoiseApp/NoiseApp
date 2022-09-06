@@ -18,6 +18,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet var yConstraint: NSLayoutConstraint!
     // Allows us to use the audio recorder
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
@@ -66,7 +67,34 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         //we have to update meters before we can get the metering values
         audioRecorder.updateMeters()
         let dBFS = audioRecorder.averagePower(forChannel: 0)
-        decibel.text = String(format: "<- %.0f dB", dBFS+100)
+        let dB = dBFS + 100
+        decibel.text = String(format: "<- %.0f dB", dB)
+        decibel.transform.ty = CGFloat(-5.2*(dBFS+100))
+        if (dB < 80) {
+            UIView.animate(withDuration: 1) {
+                self.statusLabel.textColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
+                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
+                self.decibel.textColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
+                self.view.backgroundColor = UIColor.init(displayP3Red: 0.0, green: 0.4, blue: 0.0, alpha: 1)
+            }
+        }
+        else if (80 < dB && dB < 95) {
+            UIView.animate(withDuration: 1) {
+                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
+                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
+                self.decibel.textColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
+                self.view.backgroundColor = UIColor.init(displayP3Red: 0.93, green: 0.82, blue: 0.01, alpha: 1)
+            }
+        }
+        else if (dB > 95) {
+            UIView.animate(withDuration: 1) {
+                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
+                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
+                self.decibel.textColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
+                self.view.backgroundColor = UIColor.init(displayP3Red: 0.79, green: 0.04, blue: 0.0, alpha: 1)
+            }
+            
+        }
     }
     
     @IBAction func pressedStopRecording(_ sender: UIButton)
@@ -105,6 +133,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
             destinationVC.recordedAudioURL = url
         }
     }
+    
+    
 }
 
 
