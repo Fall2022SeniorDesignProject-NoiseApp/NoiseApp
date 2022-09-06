@@ -26,13 +26,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        decibel.text = "0"
         stopRecordingButton.isEnabled = false
     }
     
     @IBAction func pressedRecord(_ sender: UIButton)
     {
         // Keeps the record button disabled while already recording
-        statusLabel.text = "Recording in Progress"
+        statusLabel.text = "Decibel Tracking in Progress"
         stopRecordingButton.isEnabled = true
         recordButton.isEnabled = false
                 
@@ -66,7 +67,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         //we have to update meters before we can get the metering values
         audioRecorder.updateMeters()
         let dBFS = audioRecorder.averagePower(forChannel: 0)
-        decibel.text = String(format: "%.0f", dBFS)
+        decibel.text = String(format: "<- %.0f dB", dBFS+100)
     }
     
     @IBAction func pressedStopRecording(_ sender: UIButton)
