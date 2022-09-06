@@ -112,6 +112,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
+        self.levelTimer.invalidate()
+        self.view.backgroundColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.3, alpha: 1)
+        
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
@@ -120,6 +123,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if flag
         {
             performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)
+            
         }
         else
         {
