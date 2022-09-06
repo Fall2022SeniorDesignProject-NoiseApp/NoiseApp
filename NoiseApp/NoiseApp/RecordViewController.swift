@@ -26,7 +26,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        decibel.text = "0"
         stopRecordingButton.isEnabled = false
     }
     
