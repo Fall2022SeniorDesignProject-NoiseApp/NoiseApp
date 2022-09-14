@@ -64,6 +64,13 @@
                                 <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" systemColor="systemPurpleColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HEARING PROTECTION RECOMMENDED" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7s-sc-D0d" userLabel="ProtectionRecommendation">
+                                <rect key="frame" x="41" y="90" width="332" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.81649325592349276" green="0.276116527415807" blue="0.14017666191474079" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.1333333333" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -84,6 +91,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ProtectionRecommendation" destination="H7s-sc-D0d" id="rRZ-e7-8Wv"/>
                         <outlet property="decibel" destination="f8x-T8-8Es" id="MJh-kw-zuu"/>
                         <outlet property="recordButton" destination="3vS-Ta-TEv" id="CpY-G6-OXe"/>
                         <outlet property="statusLabel" destination="hrZ-Ie-lsu" id="h11-Ol-d18"/>
