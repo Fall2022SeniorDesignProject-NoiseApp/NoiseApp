@@ -59,7 +59,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         audioRecorder.delegate = self
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
-        
         // Begin recording
         audioRecorder.record()
         
@@ -79,6 +78,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 //                self.statusLabel.textColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
 //                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
 //                self.view.backgroundColor = UIColor.init(displayP3Red: 0.0, green: 0.4, blue: 0.0, alpha: 1)
+                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
             }
         }
         else if (65 < dB && dB < 85) {
@@ -86,6 +86,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 //                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
 //                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
 //                self.view.backgroundColor = UIColor.init(displayP3Red: 0.93, green: 0.82, blue: 0.01, alpha: 1)
+                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
             }
         }
         else if (dB > 85) {
