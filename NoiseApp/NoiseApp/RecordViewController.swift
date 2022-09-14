@@ -106,6 +106,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         stopRecordingButton.isEnabled = false
         recordButton.isEnabled = true
         statusLabel.text = "Tap to Record"
+        decibel.text = String(format: "%.0f dB", 0)
         
         // Stops recording
         audioRecorder.stop()
