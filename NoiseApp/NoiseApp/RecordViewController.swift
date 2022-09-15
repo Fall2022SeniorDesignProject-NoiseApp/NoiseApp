@@ -14,6 +14,7 @@ import AVFoundation
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
     // UI elements
+    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var ProtectionRecommendation: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -29,6 +30,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         super.viewDidLoad()
         stopRecordingButton.isEnabled = false
+        //progressBar.transform = CGAffineTransform(rotationAngle: .pi / 2)
     }
     
     // Locks in app in portrait mode
@@ -73,31 +75,44 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dBFS = audioRecorder.averagePower(forChannel: 0)
         let dB = 20 * log10(5 * powf(10, (dBFS/20)) * 160) + 10;
         decibel.text = String(format: "%.0f dB", dB)
-        if (dB < 65) {
-            UIView.animate(withDuration: 1) {
+        
+        // update view based on noise level
+        if (dB < 65)
+        {
+            UIView.animate(withDuration: 1)
+            {
 //                self.statusLabel.textColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
 //                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
 //                self.view.backgroundColor = UIColor.init(displayP3Red: 0.0, green: 0.4, blue: 0.0, alpha: 1)
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
             }
         }
-        else if (65 < dB && dB < 85) {
-            UIView.animate(withDuration: 1) {
+        else if (65 < dB && dB < 85)
+        {
+            UIView.animate(withDuration: 1)
+            {
 //                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
 //                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
 //                self.view.backgroundColor = UIColor.init(displayP3Red: 0.93, green: 0.82, blue: 0.01, alpha: 1)
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
             }
         }
-        else if (dB > 85) {
-            UIView.animate(withDuration: 1) {
+        else if (dB > 85)
+        {
+            UIView.animate(withDuration: 1)
+            {
 //                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
 //                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
 //                self.view.backgroundColor = UIColor.init(displayP3Red: 0.79, green: 0.04, blue: 0.0, alpha: 1)
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 1)
             }
-            
         }
+        
+        // update the progress bar to reflect the noise level; range set to [0 - 135] dB
+        // whats the max that we ca record?
+        var maxdB = Float(135.0)
+        var currentdB = dB
+        progressBar.progress = currentdB / maxdB
     }
     
     @IBAction func pressedStopRecording(_ sender: UIButton)
@@ -140,7 +155,18 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
             let url = sender as! URL
             destinationVC.recordedAudioURL = url
         }
+        if (segue.identifier == "goToReferences")
+        {
+            let referencesVC = segue.destination as! ReferencesViewController
+            // do nothing yet
+        }
     }
+    
+    @IBAction func ReferencesButtonPressed(_ sender: UIButton)
+    {
+        performSegue(withIdentifier: "goToReferences", sender: self)
+    }
+    
     
     
 }

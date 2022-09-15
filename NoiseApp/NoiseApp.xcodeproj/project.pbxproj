@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */; };
 		3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63459E28C14F00007A8479 /* RecordViewController.swift */; };
 		3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */; };
 		3F6345A328C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesViewController.swift; sourceTree = "<group>"; };
 		3F63459E28C14F00007A8479 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewController.swift; sourceTree = "<group>"; };
 		3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				3F63459E28C14F00007A8479 /* RecordViewController.swift */,
 				3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */,
 				3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */,
+				3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */,
 			);
 			path = NoiseApp;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			files = (
 				FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */,
 				FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */,
+				3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */,
 				3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */,
 				3F6345A328C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift in Sources */,
 				3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */,
@@ -451,8 +455,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,8 +482,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
