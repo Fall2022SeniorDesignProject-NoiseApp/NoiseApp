@@ -110,9 +110,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
         // update the progress bar to reflect the noise level; range set to [0 - 135] dB
         // whats the max that we ca record?
-        var maxdB = Float(135.0)
-        var currentdB = dB
-        progressBar.progress = currentdB / maxdB
+//        var maxdB = Float(135.0)
+//        var currentdB = dB
+//        progressBar.progress = currentdB / maxdB
     }
     
     @IBAction func pressedStopRecording(_ sender: UIButton)

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vS-Ta-TEv">
-                                <rect key="frame" x="147" y="402" width="120.5" height="92"/>
+                                <rect key="frame" x="146.5" y="402" width="121" height="92"/>
                                 <color key="tintColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="record.circle.fill" catalog="system" title=" ">
@@ -48,22 +48,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Dy-kI-Fwx" userLabel="Menu">
                                 <rect key="frame" x="0.0" y="828" width="414" height="68"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hix-9F-MH9">
-                                        <rect key="frame" x="253" y="17" width="110" height="35"/>
-                                        <color key="tintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEQ-sM-EYs">
+                                        <rect key="frame" x="267" y="17" width="110" height="35"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="References"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="References" cornerStyle="capsule">
+                                            <color key="baseBackgroundColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
                                         <connections>
-                                            <action selector="ReferencesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K64-xN-iWJ"/>
-                                            <segue destination="Ydr-pA-5OF" kind="presentation" identifier="goToReferences" id="0jp-Ag-ljR"/>
+                                            <action selector="ReferencesButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ngy-mF-GvO"/>
+                                            <segue destination="Ydr-pA-5OF" kind="presentation" identifier="goToReferences" id="h7v-vN-0O1"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IEQ-sM-EYs" secondAttribute="trailing" constant="37" id="6gg-V9-o9C"/>
                                     <constraint firstAttribute="height" constant="68" id="OXg-kB-q0h"/>
-                                    <constraint firstAttribute="bottom" secondItem="hix-9F-MH9" secondAttribute="bottom" constant="16" id="fev-hD-UFF"/>
-                                    <constraint firstAttribute="trailing" secondItem="hix-9F-MH9" secondAttribute="trailing" constant="51" id="w01-EZ-9a4"/>
+                                    <constraint firstAttribute="bottom" secondItem="IEQ-sM-EYs" secondAttribute="bottom" constant="16" id="ybG-0j-ST2"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00 dB" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8x-T8-8Es">
@@ -84,10 +85,6 @@
                                 <color key="textColor" red="0.81649325592349276" green="0.276116527415807" blue="0.14017666191474079" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FAa-gE-uD0">
-                                <rect key="frame" x="46" y="676" width="323" height="2.5"/>
-                                <color key="trackTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.1333333333" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -97,16 +94,13 @@
                             <constraint firstItem="hrZ-Ie-lsu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8HD-0W-oJi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H7s-sc-D0d" secondAttribute="trailing" constant="41" id="9UP-H5-xgI"/>
                             <constraint firstItem="X2y-ut-dpm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FI9-0Y-tX6"/>
-                            <constraint firstItem="FAa-gE-uD0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="26" id="GHI-uo-Xft"/>
                             <constraint firstItem="3Dy-kI-Fwx" firstAttribute="top" secondItem="X2y-ut-dpm" secondAttribute="bottom" constant="40" id="HNG-jz-fcC"/>
                             <constraint firstItem="3vS-Ta-TEv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L2T-dn-O9e"/>
                             <constraint firstItem="hrZ-Ie-lsu" firstAttribute="top" secondItem="3vS-Ta-TEv" secondAttribute="bottom" constant="9" id="Xaq-0K-jZ1"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FAa-gE-uD0" secondAttribute="trailing" constant="25" id="a4r-cL-Qi3"/>
                             <constraint firstItem="f8x-T8-8Es" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="adB-2a-ghz"/>
                             <constraint firstItem="H7s-sc-D0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="al7-Ah-TFJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Dy-kI-Fwx" secondAttribute="trailing" id="kaQ-Wk-de3"/>
                             <constraint firstItem="3Dy-kI-Fwx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q2N-xe-c9U"/>
-                            <constraint firstItem="X2y-ut-dpm" firstAttribute="top" secondItem="FAa-gE-uD0" secondAttribute="bottom" constant="46.5" id="s7O-jA-c4x"/>
                             <constraint firstItem="3vS-Ta-TEv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wl6-0q-kgl"/>
                             <constraint firstItem="3vS-Ta-TEv" firstAttribute="top" secondItem="f8x-T8-8Es" secondAttribute="bottom" constant="100" id="xXb-Z9-5Xd"/>
                         </constraints>
@@ -114,7 +108,6 @@
                     <connections>
                         <outlet property="ProtectionRecommendation" destination="H7s-sc-D0d" id="rRZ-e7-8Wv"/>
                         <outlet property="decibel" destination="f8x-T8-8Es" id="MJh-kw-zuu"/>
-                        <outlet property="progressBar" destination="FAa-gE-uD0" id="zp6-gq-a5E"/>
                         <outlet property="recordButton" destination="3vS-Ta-TEv" id="CpY-G6-OXe"/>
                         <outlet property="statusLabel" destination="hrZ-Ie-lsu" id="h11-Ol-d18"/>
                         <outlet property="stopRecordingButton" destination="X2y-ut-dpm" id="Qwc-s8-TV5"/>
@@ -199,7 +192,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoC-ae-zYZ">
-                                <rect key="frame" x="162" y="753" width="90.5" height="69"/>
+                                <rect key="frame" x="162" y="753" width="90" height="69"/>
                                 <color key="tintColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="stop" catalog="system" title=" ">
@@ -210,7 +203,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltU-Jz-hDX">
-                                <rect key="frame" x="153.5" y="399.5" width="107.5" height="97"/>
+                                <rect key="frame" x="153.5" y="399.5" width="107" height="97"/>
                                 <color key="tintColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="play" catalog="system" title=" ">
