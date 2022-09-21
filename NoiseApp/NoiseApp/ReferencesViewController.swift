@@ -16,6 +16,14 @@ class ReferencesViewController: UIViewController
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func pressedOSHA(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string:"https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.95")! as URL)
+    }
+    
+    @IBAction func pressedNIOSH(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string:"https://www.cdc.gov/niosh/topics/noise/default.html")! as URL)
+    }
+    
     @IBAction func pressedHome(_ sender: UIButton)
     {
         dismiss(animated: true)
