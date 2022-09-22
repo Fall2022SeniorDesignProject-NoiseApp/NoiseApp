@@ -14,6 +14,9 @@ import AVFoundation
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
     // UI elements
+    @IBOutlet weak var audioIcon: UIImageView!
+    @IBOutlet weak var maxDecibel: UILabel!
+    @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var ProtectionRecommendation: UILabel!
@@ -24,6 +27,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // Allows us to use the audio recorder
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
+    var maxDB: Float = 0.0
+    var dB: Float = 0.0
     
     // Called when this view is first loaded into memory (used for additional initialization steps)
     override func viewDidLoad()
@@ -67,45 +72,39 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         self.levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
     }
     
-    //This selector/function is called every time our timer (levelTime) fires
+    //This selector/function is called every time our timer (levelTimer) fires
     @objc func levelTimerCallback()
     {
         //we have to update meters before we can get the metering values
         audioRecorder.updateMeters()
         let dBFS = audioRecorder.averagePower(forChannel: 0)
-        let dB = 20 * log10(5 * powf(10, (dBFS/20)) * 160) + 10;
+        dB = 20 * log10(5 * powf(10, (dBFS/20)) * 160) + 10;
         decibel.text = String(format: "%.0f dB", dB)
-        
+        if (dB > maxDB) {
+            maxDB = dB;
+        }
+        maxDecibel.text = String(format: "MAX: %.0f dB", maxDB)
         // update view based on noise level
         if (dB < 65)
         {
-            UIView.animate(withDuration: 1)
-            {
-//                self.statusLabel.textColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
-//                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 1.0, green: 0.435, blue: 0.32, alpha: 1)
-//                self.view.backgroundColor = UIColor.init(displayP3Red: 0.0, green: 0.4, blue: 0.0, alpha: 1)
+            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+                self.audioIcon.tintColor = UIColor.green
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
-            }
+                }, completion: nil)
         }
         else if (65 < dB && dB < 85)
         {
-            UIView.animate(withDuration: 1)
-            {
-//                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
-//                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.30, alpha: 1)
-//                self.view.backgroundColor = UIColor.init(displayP3Red: 0.93, green: 0.82, blue: 0.01, alpha: 1)
+            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+                self.audioIcon.tintColor = UIColor.yellow
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
-            }
+                }, completion: nil)
         }
         else if (dB > 85)
         {
-            UIView.animate(withDuration: 1)
-            {
-//                self.statusLabel.textColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
-//                self.stopRecordingButton.tintColor = UIColor.init(displayP3Red: 0.00, green: 0.75, blue: 0.79, alpha: 1)
-//                self.view.backgroundColor = UIColor.init(displayP3Red: 0.79, green: 0.04, blue: 0.0, alpha: 1)
+            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+                self.audioIcon.tintColor = UIColor.red
                 self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 1)
-            }
+                }, completion: nil)
         }
         
         // update the progress bar to reflect the noise level; range set to [0 - 135] dB
@@ -114,7 +113,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 //        var currentdB = dB
 //        progressBar.progress = currentdB / maxdB
     }
-    
+
     @IBAction func pressedStopRecording(_ sender: UIButton)
     {
         // Keeps the stop recording button disabled once recording has stopped
