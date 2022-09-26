@@ -27,8 +27,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // Allows us to use the audio recorder
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
+    var averageTimer = Timer()
     var maxDB: Float = 0.0
     var dB: Float = 0.0
+    var avgDB: Float = 0.0
+    var leqValues: [Float] = []
     
     // Called when this view is first loaded into memory (used for additional initialization steps)
     override func viewDidLoad()
@@ -70,6 +73,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         audioRecorder.record()
         
         self.levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
+        self.averageTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(averageTimerCallback), userInfo: nil, repeats: true)
     }
     
     //This selector/function is called every time our timer (levelTimer) fires
@@ -113,6 +117,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 //        var currentdB = dB
 //        progressBar.progress = currentdB / maxdB
     }
+    
+    @objc func averageTimerCallback()
+    {
+        leqValues.append(dB)
+        avgDB = Float(leqValues.reduce(0.0, +)/Float(leqValues.count))
+        averageDecibel.text = String(format: "AVG: %.0f dB", avgDB)
+    }
 
     @IBAction func pressedStopRecording(_ sender: UIButton)
     {
@@ -121,14 +132,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         recordButton.isEnabled = true
         statusLabel.text = "Tap to Record"
         decibel.text = String(format: "%.0f dB", 0)
+        leqValues.removeAll()
         
         // Stops recording
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
         self.levelTimer.invalidate()
-        self.view.backgroundColor = UIColor.init(displayP3Red: 0.01, green: 0.14, blue: 0.3, alpha: 1)
-        
+        self.averageTimer.invalidate()
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
