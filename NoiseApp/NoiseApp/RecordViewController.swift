@@ -82,7 +82,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         //we have to update meters before we can get the metering values
         audioRecorder.updateMeters()
         let dBFS = audioRecorder.averagePower(forChannel: 0)
-        dB = 20 * log10(5 * powf(10, (dBFS/20)) * 160) + 10;
+        dB = 20 * log10(5 * powf(10, (dBFS/20)) * 160) + 11;
         decibel.text = String(format: "%.0f dB", dB)
         if (dB > maxDB) {
             maxDB = dB;
