@@ -91,23 +91,23 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         // update view based on noise level
         if (dB < 65)
         {
-            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+            UIView.animateKeyframes(withDuration: 1, delay: 0.5, options: [.allowUserInteraction], animations: {
                 self.audioIcon.tintColor = UIColor.green
-                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
+                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.592, green: 0.11, blue: 0, alpha: 0)
                 }, completion: nil)
         }
         else if (65 < dB && dB < 85)
         {
-            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+            UIView.animateKeyframes(withDuration: 1, delay: 0.5, options: [.allowUserInteraction], animations: {
                 self.audioIcon.tintColor = UIColor.yellow
-                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 0)
+                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.592, green: 0.11, blue: 0, alpha: 0)
                 }, completion: nil)
         }
         else if (dB > 85)
         {
-            UIView.animateKeyframes(withDuration: 1, delay: 1, options: [.allowUserInteraction], animations: {
+            UIView.animateKeyframes(withDuration: 1, delay: 0.5, options: [.allowUserInteraction], animations: {
                 self.audioIcon.tintColor = UIColor.red
-                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.392, green: 0.11, blue: 0, alpha: 1)
+                self.ProtectionRecommendation.textColor = UIColor.init(displayP3Red: 0.592, green: 0.11, blue: 0, alpha: 1)
                 }, completion: nil)
         }
         

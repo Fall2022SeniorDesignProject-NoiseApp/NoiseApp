@@ -63,22 +63,13 @@
                                     <accessibilityTraits key="traits" staticText="YES" updatesFrequently="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemGray5Color"/>
                                 <color key="highlightedColor" systemColor="systemPurpleColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEARING PROTECTION RECOMMENDED" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7s-sc-D0d" userLabel="ProtectionRecommendation">
-                                <rect key="frame" x="41" y="48" width="332" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="PTo-dF-a9U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" red="0.81649325592349276" green="0.276116527415807" blue="0.14017666191474079" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MAX: 00 dB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndJ-1e-1hv" userLabel="MaxdB">
                                 <rect key="frame" x="235" y="239" width="159" height="26"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <color key="textColor" red="0.76120442150000001" green="0.38722682000000003" blue="0.21169754860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" systemColor="systemGray5Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVG: 00 dB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcN-l1-Pb6" userLabel="AveragedB">
@@ -87,11 +78,11 @@
                                     <constraint firstAttribute="width" constant="140" id="jXn-nc-gXr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <color key="textColor" red="0.76120442150000001" green="0.38722682000000003" blue="0.21169754860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" systemColor="systemGray5Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="bhj-8A-Q4M">
-                                <rect key="frame" x="354" y="103.5" width="40" height="43"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bhj-8A-Q4M">
+                                <rect key="frame" x="331" y="147" width="63" height="69"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <imageReference key="image" image="speaker.2.fill" catalog="system" symbolScale="small"/>
                             </imageView>
@@ -106,11 +97,20 @@
                                     <action selector="pressedStopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BaM-pT-C7w"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="HEARING PROTECTION RECOMMENDED" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7s-sc-D0d" userLabel="ProtectionRecommendation">
+                                <rect key="frame" x="20" y="48" width="374" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="PTo-dF-a9U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" red="0.81649325592349276" green="0.276116527415807" blue="0.14017666191474079" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.1333333333" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="bhj-8A-Q4M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="354" id="0Rk-0D-oQz"/>
+                            <constraint firstItem="bhj-8A-Q4M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="331" id="0Rk-0D-oQz"/>
                             <constraint firstItem="bhj-8A-Q4M" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="6bj-GV-54a"/>
                             <constraint firstItem="H7s-sc-D0d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7fA-19-tGf"/>
                             <constraint firstAttribute="baseline" secondItem="3Dy-kI-Fwx" secondAttribute="bottom" id="8A1-cB-jft"/>
@@ -127,7 +127,7 @@
                             <constraint firstItem="hrZ-Ie-lsu" firstAttribute="top" secondItem="3vS-Ta-TEv" secondAttribute="bottom" constant="9" id="Xaq-0K-jZ1"/>
                             <constraint firstItem="f8x-T8-8Es" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="adB-2a-ghz"/>
                             <constraint firstItem="H7s-sc-D0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="al7-Ah-TFJ"/>
-                            <constraint firstItem="bhj-8A-Q4M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52.5" id="dJP-HB-iis"/>
+                            <constraint firstItem="bhj-8A-Q4M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="95.5" id="dJP-HB-iis"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Dy-kI-Fwx" secondAttribute="trailing" id="kaQ-Wk-de3"/>
                             <constraint firstItem="FcN-l1-Pb6" firstAttribute="top" secondItem="f8x-T8-8Es" secondAttribute="bottom" constant="37" id="lk6-Mm-AnF"/>
                             <constraint firstItem="3Dy-kI-Fwx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q2N-xe-c9U"/>
@@ -302,6 +302,9 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
         <image name="speaker.2.fill" catalog="system" width="128" height="88"/>
         <image name="stop" catalog="system" width="128" height="113"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
