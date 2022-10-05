@@ -1,5 +1,5 @@
 //
-//  PlayRecordingsViewControllerExtension.swift
+//  PlayRecordingsViewController.swift
 //  NoiseApp
 //
 //  Created by Mitchel Santillan Cruz on 9/1/22.
@@ -9,27 +9,45 @@ import Foundation
 import UIKit
 import AVFoundation
 
-extension PlayRecordingsViewController: AVAudioPlayerDelegate
+class PlayRecordingsViewController: UIViewController, AVAudioPlayerDelegate
 {
-    // MARK: Alerts
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     
-    struct Alerts
+    var recordedAudioURL: URL!
+    var audioFile: AVAudioFile!
+    var audioEngine: AVAudioEngine!
+    var audioPlayerNode: AVAudioPlayerNode!
+    var stopTimer: Timer!
+    
+    var link = DecibelManager()
+    
+    override func viewDidLoad()
     {
-        static let DismissAlert = "Dismiss"
-        static let RecordingDisabledTitle = "Recording Disabled"
-        static let RecordingDisabledMessage = "You've disabled this app from recording your microphone. Check Settings."
-        static let RecordingFailedTitle = "Recording Failed"
-        static let RecordingFailedMessage = "Something went wrong with your recording."
-        static let AudioRecorderError = "Audio Recorder Error"
-        static let AudioSessionError = "Audio Session Error"
-        static let AudioRecordingError = "Audio Recording Error"
-        static let AudioFileError = "Audio File Error"
-        static let AudioEngineError = "Audio Engine Error"
+        super.viewDidLoad()
+        setupAudio()
     }
     
-    // MARK: PlayingState
+    override func viewWillAppear(_ animated: Bool)
+    {
+        configureUI("notPlaying")
+    }
     
-    enum PlayingState { case playing, notPlaying }
+    @IBAction func pressedPlay(_ sender: UIButton)
+    {
+        playSound(rate: 1.0)
+        configureUI("playing")
+    }
+    
+    @IBAction func pressedStop(_ sender: UIButton)
+    {
+        stopAudio()
+    }
+    
+    @IBAction func pressedHome(_ sender: UIButton)
+    {
+        dismiss(animated: true)
+    }
     
     // MARK: Audio Functions
     
@@ -42,7 +60,7 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
         }
         catch
         {
-            showAlert(Alerts.AudioFileError, message: String(describing: error))
+            showAlert("Audio File Error", message: String(describing: error))
         }
     }
     
@@ -58,7 +76,8 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
         
         // Node for adjusting rate
         let changeRateNode = AVAudioUnitTimePitch()
-        if let rate = rate {
+        if let rate = rate
+        {
             changeRateNode.rate = rate
         }
         audioEngine.attach(changeRateNode)
@@ -94,7 +113,7 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
         }
         catch
         {
-            showAlert(Alerts.AudioEngineError, message: String(describing: error))
+            showAlert("Audio Engine Error", message: String(describing: error))
             return
         }
         
@@ -114,7 +133,7 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
             stopTimer.invalidate()
         }
         
-        configureUI(.notPlaying)
+        configureUI("notPlaying")
                         
         if let audioEngine = audioEngine
         {
@@ -127,7 +146,7 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
     
     func connectAudioNodes(_ nodes: AVAudioNode...)
     {
-        for x in 0..<nodes.count-1
+        for x in 0 ..< nodes.count - 1
         {
             audioEngine.connect(nodes[x], to: nodes[x+1], format: audioFile.processingFormat)
         }
@@ -135,16 +154,18 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
     
     // MARK: UI Functions
 
-    func configureUI(_ playState: PlayingState)
+    func configureUI(_ playState: String)
     {
         switch(playState)
         {
-        case .playing:
+        case "playing":
             setPlayButtonsEnabled(false)
             stopButton.isEnabled = true
-        case .notPlaying:
+        case "notPlaying":
             setPlayButtonsEnabled(true)
             stopButton.isEnabled = false
+        default:
+            print("reached default block in configureUI()")
         }
     }
 
@@ -156,8 +177,7 @@ extension PlayRecordingsViewController: AVAudioPlayerDelegate
     func showAlert(_ title: String, message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Alerts.DismissAlert, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
-

@@ -10,7 +10,8 @@
 		3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */; };
 		3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63459E28C14F00007A8479 /* RecordViewController.swift */; };
 		3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */; };
-		3F6345A328C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */; };
+		3F795A1F28ECDE5C00D77D94 /* DecibelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */; };
+		3F795A2128ECDEBF00D77D94 /* DecibelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */; };
 		FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */; };
 		FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */; };
 		FCED2A9428BFFC15003CF1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCED2A9228BFFC15003CF1E4 /* Main.storyboard */; };
@@ -42,7 +43,8 @@
 		3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesViewController.swift; sourceTree = "<group>"; };
 		3F63459E28C14F00007A8479 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewController.swift; sourceTree = "<group>"; };
-		3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewControllerExtension.swift; sourceTree = "<group>"; };
+		3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelData.swift; sourceTree = "<group>"; };
+		3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelManager.swift; sourceTree = "<group>"; };
 		FCED2A8928BFFC15003CF1E4 /* NoiseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F795A1B28ECC29B00D77D94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */,
+				3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3F795A1C28ECC2A500D77D94 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FCED2A9228BFFC15003CF1E4 /* Main.storyboard */,
+				FCED2A9728BFFC16003CF1E4 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3F795A1D28ECC2AB00D77D94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3F63459E28C14F00007A8479 /* RecordViewController.swift */,
+				3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */,
+				3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		FCED2A8028BFFC15003CF1E4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,14 +137,11 @@
 			children = (
 				FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */,
 				FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */,
-				FCED2A9228BFFC15003CF1E4 /* Main.storyboard */,
+				3F795A1B28ECC29B00D77D94 /* Model */,
+				3F795A1C28ECC2A500D77D94 /* View */,
+				3F795A1D28ECC2AB00D77D94 /* Controller */,
 				FCED2A9528BFFC16003CF1E4 /* Assets.xcassets */,
-				FCED2A9728BFFC16003CF1E4 /* LaunchScreen.storyboard */,
 				FCED2A9A28BFFC16003CF1E4 /* Info.plist */,
-				3F63459E28C14F00007A8479 /* RecordViewController.swift */,
-				3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */,
-				3F6345A228C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift */,
-				3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */,
 			);
 			path = NoiseApp;
 			sourceTree = "<group>";
@@ -268,10 +295,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */,
+				3F795A1F28ECDE5C00D77D94 /* DecibelData.swift in Sources */,
+				3F795A2128ECDEBF00D77D94 /* DecibelManager.swift in Sources */,
 				FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */,
 				3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */,
 				3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */,
-				3F6345A328C14F5F007A8479 /* PlayRecordingsViewControllerExtension.swift in Sources */,
 				3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
