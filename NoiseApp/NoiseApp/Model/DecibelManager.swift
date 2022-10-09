@@ -39,6 +39,13 @@ struct DecibelManager
         }        
     }
     
+    func calculateIntensity(decibelIn: Float, timeInSeconds: Float) -> Float
+    {
+        let intensity = powf(10, (decibelIn/10))
+        let weightedIntensity = intensity * timeInSeconds
+        return weightedIntensity
+    }
+    
     func getDecibel() -> String
     {
         // syntax means return 0.0 in case decibel is nil (null)

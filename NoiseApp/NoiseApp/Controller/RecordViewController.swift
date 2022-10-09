@@ -13,8 +13,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
     @IBOutlet weak var audioIcon: UIImageView!
     @IBOutlet weak var maxDecibel: UILabel!
-    @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var decibel: UILabel!
+    @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var ProtectionRecommendation: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
@@ -71,11 +71,15 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     @objc func averageTimerCallback()
     {
-        var db = link.decibelData?.decibel
-        leqValues.append(db!)
-        avgDB = Float(leqValues.reduce(0.0, +) / Float(leqValues.count))
-        averageDecibel.text = String(format: "AVG: %.0f dB", avgDB)
+        let db = link.decibelData?.decibel
+        let weightedIntensity = link.calculateIntensity(decibelIn: db!, timeInSeconds: 2.0)
+        leqValues.append(weightedIntensity)
+        let twa = Float(leqValues.reduce(0.0, +) / (Float(leqValues.count) * 2))
+        let avgDB = 10 * log10(twa)
+        averageDecibel.text = String(format: "LEQ: %.0f dB", avgDB)
+        
     }
+
 
     @IBAction func pressedStopRecording(_ sender: UIButton)
     {
