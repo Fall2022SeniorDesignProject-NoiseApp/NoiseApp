@@ -11,9 +11,12 @@ import AVFoundation
 
 struct DecibelManager
 {
+    //Andy Hines: I am developing using a remote Mac desktop so I'm unable to test the success of implementing the OSHA/NIOSH bounds. If we're having problems, it's probably because multiple controllers are creating instances of DecibelManager(). In that case we should add a static shared instance then access it from each other controller instead of creating "var link".
     // Properties
     var decibelData: DecibelData?
     var maxDB: Float = 0.0
+    var boundHigh: Float = 0
+    var boundLow: Float = 0
     
     // Methods
     mutating func calculateDecibels(decibelIn: Float)
@@ -25,15 +28,15 @@ struct DecibelManager
             maxDB = dB
         }
         
-        if (dB < 65)
+        if (dB < boundLow)
         {
             decibelData = DecibelData(decibel: dB, color: UIColor.green, recommendation: "")
         }
-        else if (65 < dB && dB < 85)
+        else if (boundLow < dB && dB < boundHigh)
         {
             decibelData = DecibelData(decibel: dB, color: UIColor.yellow, recommendation: "")
         }
-        else if (dB > 85)
+        else if (dB > boundHigh)
         {
             decibelData = DecibelData(decibel: dB, color: UIColor.red, recommendation: "HEARING PROTECTION RECOMMENDED")
         }        
@@ -82,5 +85,13 @@ struct DecibelManager
         // Creates a session needed to record/playback audio
         let session = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+    }
+    
+    mutating func setBoundHigh(number: Float) {
+        self.boundHigh = number
+    }
+    
+    mutating func setBoundLow(number: Float) {
+        self.boundLow = number
     }
 }
