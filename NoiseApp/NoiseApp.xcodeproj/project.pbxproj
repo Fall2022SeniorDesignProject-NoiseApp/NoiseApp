@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E0FE44C28F38241004E13DB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FE44B28F38241004E13DB /* SettingsViewController.swift */; };
 		3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */; };
 		3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63459E28C14F00007A8479 /* RecordViewController.swift */; };
 		3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E0FE44B28F38241004E13DB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesViewController.swift; sourceTree = "<group>"; };
 		3F63459E28C14F00007A8479 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				3F63459E28C14F00007A8479 /* RecordViewController.swift */,
 				3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */,
 				3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */,
+				2E0FE44B28F38241004E13DB /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */,
 				3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */,
 				3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */,
+				2E0FE44C28F38241004E13DB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
