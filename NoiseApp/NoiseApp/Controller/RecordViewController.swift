@@ -15,7 +15,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var maxDecibel: UILabel!
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var averageDecibel: UILabel!
-    @IBOutlet weak var ProtectionRecommendation: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
     
@@ -87,6 +86,20 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         averageTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(averageTimerCallback), userInfo: nil, repeats: true)
     }
     
+    func monitorDecibels()
+    {
+        let dB = link.getDecibelValue()
+        if (dB >= 90)
+        {
+            let popup = UIAlertController(title: "Dangerous decibel levels", message: link.getProtectionRec(), preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            
+            popup.addAction(dismiss)
+            present(popup, animated: true)
+            endRecording()
+        }
+    }
+    
     @objc func levelTimerCallback()
     {
         audioRecorder.updateMeters()
@@ -95,7 +108,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
         decibel.text = link.getFormattedDecibel()
         maxDecibel.text = link.getMaxDecibel()
-        ProtectionRecommendation.text = link.getProtectionRec()
+        monitorDecibels()
                 
         let dB = link.getDecibelValue()
         let normalizedValue = (dB - 0) / (115.0 - 0)
@@ -127,45 +140,59 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
 
     @IBAction func pressedStopRecording(_ sender: UIButton)
     {
+        endRecording()
+    }
+    
+    func resetReadings()
+    {
+        decibel.text = String(00)
+        maxDecibel.text = String(00)
+        averageDecibel.text = String(00)
+        link.clearMaxDecibel()
+    }
+    
+    func endRecording()
+    {
         stopRecordingButton.isEnabled = false
         recordButton.isEnabled = true
-        decibel.text = String(format: "%.0f dB", 0)
         leqValues.removeAll()
+        resetReadings()
                 
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
         self.levelTimer.invalidate()
         self.averageTimer.invalidate()
+        
+        // clear the reset the progress bar below
     }
     
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
-    {
-        // Assuming our recording saved successfully, jump to the next view
-        if flag
-        {
-            performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)
-        }
-        else
-        {
-            print("\n Error: Could not save recording")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        // Makes sure to send the audio's file path to the next view
-        if segue.identifier == "playRecordings"
-        {
-            let destinationVC = segue.destination as! PlayRecordingsViewController
-            let url = sender as! URL
-            destinationVC.recordedAudioURL = url
-        }
-    }
+//    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
+//    {
+//        // Assuming our recording saved successfully, jump to the next view
+//        if flag
+//        {
+//            performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)
+//        }
+//        else
+//        {
+//            print("\n Error: Could not save recording")
+//        }
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+//    {
+//        // Makes sure to send the audio's file path to the next view
+//        if segue.identifier == "playRecordings"
+//        {
+//            let destinationVC = segue.destination as! PlayRecordingsViewController
+//            let url = sender as! URL
+//            destinationVC.recordedAudioURL = url
+//        }
+//    }
     
     @IBAction func ReferencesButtonPressed(_ sender: UIButton)
     {
         performSegue(withIdentifier: "goToReferences", sender: self)
     }
 }
-

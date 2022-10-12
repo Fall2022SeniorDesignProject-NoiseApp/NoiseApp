@@ -89,16 +89,6 @@
                                     <action selector="pressedStopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BaM-pT-C7w"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7s-sc-D0d" userLabel="ProtectionRecommendation">
-                                <rect key="frame" x="20" y="48" width="374" height="88"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="PTo-dF-a9U"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LEQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLr-e7-I33">
                                 <rect key="frame" x="64" y="232" width="50" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -124,18 +114,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.1333333333" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="H7s-sc-D0d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7fA-19-tGf"/>
                             <constraint firstAttribute="baseline" secondItem="3Dy-kI-Fwx" secondAttribute="bottom" id="8A1-cB-jft"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H7s-sc-D0d" secondAttribute="trailing" constant="41" id="9UP-H5-xgI"/>
                             <constraint firstItem="f8x-T8-8Es" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YqY-Zh-3eF"/>
-                            <constraint firstItem="H7s-sc-D0d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="al7-Ah-TFJ"/>
                             <constraint firstItem="f8x-T8-8Es" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gMV-H4-1wA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Dy-kI-Fwx" secondAttribute="trailing" id="kaQ-Wk-de3"/>
                             <constraint firstItem="3Dy-kI-Fwx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="q2N-xe-c9U"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ProtectionRecommendation" destination="H7s-sc-D0d" id="rRZ-e7-8Wv"/>
                         <outlet property="averageDecibel" destination="FcN-l1-Pb6" id="wSe-ua-snf"/>
                         <outlet property="decibel" destination="f8x-T8-8Es" id="MJh-kw-zuu"/>
                         <outlet property="maxDecibel" destination="ndJ-1e-1hv" id="frk-2v-m8t"/>

@@ -128,4 +128,9 @@ struct DecibelManager
         print("Called setBoundLow")
         print(boundLow!)
     }
+    
+    mutating func clearMaxDecibel()
+    {
+        maxDB = 0.0
+    }
 }
