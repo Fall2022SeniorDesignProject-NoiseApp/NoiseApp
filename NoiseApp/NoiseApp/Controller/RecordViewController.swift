@@ -15,8 +15,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var maxDecibel: UILabel!
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var averageDecibel: UILabel!
-    @IBOutlet weak var recordButton: UIButton!
-    @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
     
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
@@ -33,7 +32,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        stopRecordingButton.isEnabled = false
         configureProgressBar()
     }
     
@@ -56,7 +54,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
         shapeLayer.path = circularPath.cgPath
         
-        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.strokeColor = UIColor.orange.cgColor
         shapeLayer.lineWidth = 10
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -66,24 +64,37 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         view.layer.addSublayer(shapeLayer)
     }
     
-    @IBAction func pressedRecord(_ sender: UIButton)
+    // rename this method and the UIButton
+    @IBAction func pressedActionBtn(_ sender: UIButton)
     {
-        // Keeps the record button disabled while already recording
-        stopRecordingButton.isEnabled = true
-        recordButton.isEnabled = false
-                
-        let filePath = link.getFilePath()
-        link.beginAudioSession()
+        if (actionButton.tag == 0)
+        {
+            // begin recording
+            let symbol = UIImage(systemName: "pause.circle")
+            actionButton.setImage(symbol, for: .normal)
+            actionButton.tag = 1
+            
+            let filePath = link.getFilePath()
+            link.beginAudioSession()
 
-        // Preparations before recording
-        try! audioRecorder = AVAudioRecorder(url: filePath, settings: [:])
-        audioRecorder.delegate = self
-        audioRecorder.isMeteringEnabled = true
-        audioRecorder.prepareToRecord()
-        audioRecorder.record()
-        
-        levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
-        averageTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(averageTimerCallback), userInfo: nil, repeats: true)
+            // Preparations before recording
+            try! audioRecorder = AVAudioRecorder(url: filePath, settings: [:])
+            audioRecorder.delegate = self
+            audioRecorder.isMeteringEnabled = true
+            audioRecorder.prepareToRecord()
+            audioRecorder.record()
+            
+            levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
+            averageTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(averageTimerCallback), userInfo: nil, repeats: true)
+        }
+        else
+        {
+            // end recording
+            let symbol = UIImage(systemName: "record.circle")
+            actionButton.setImage(symbol, for: .normal)
+            actionButton.tag = 0
+            endRecording()
+        }
     }
     
     func monitorDecibels()
@@ -91,12 +102,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dB = link.getDecibelValue()
         if (dB >= 90)
         {
-            let popup = UIAlertController(title: "Dangerous decibel levels", message: link.getProtectionRec(), preferredStyle: .alert)
+            let dB = String(format: "%.f", link.getDecibelValue())
+            let msg = "\(dB) is a dangerous dB level, consider using hearing protection."
+            let popup = UIAlertController(title: link.getProtectionRec(), message: msg, preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             
             popup.addAction(dismiss)
             present(popup, animated: true)
-            endRecording()
+            //endRecording()
         }
     }
     
@@ -134,13 +147,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let twa = Float(leqValues.reduce(0.0, +) / (Float(leqValues.count) * 2))
         let avgDB = 10 * log10(twa)
         averageDecibel.text = String(format: "%.0f", avgDB)
-        
-    }
-
-
-    @IBAction func pressedStopRecording(_ sender: UIButton)
-    {
-        endRecording()
     }
     
     func resetReadings()
@@ -153,8 +159,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     func endRecording()
     {
-        stopRecordingButton.isEnabled = false
-        recordButton.isEnabled = true
+        actionButton.isEnabled = true
         leqValues.removeAll()
         resetReadings()
                 
