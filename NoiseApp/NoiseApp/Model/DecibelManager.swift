@@ -73,14 +73,19 @@ struct DecibelManager
         return weightedIntensity
     }
     
-    func getDecibel() -> String
+    func getFormattedDecibel() -> String
     {
-        return String(format: "%.0f dB", decibelData?.decibel ?? 0.0)
+        return String(format: "%.0f", decibelData?.decibel ?? 0.0)
+    }
+    
+    func getDecibelValue() -> Float
+    {
+        return decibelData?.decibel ?? 0.0
     }
     
     func getMaxDecibel() -> String
     {
-        return String(format: "MAX: %.0f dB", maxDB)
+        return String(format: "%.0f", maxDB)
     }
     
     func getProtectionRec() -> String

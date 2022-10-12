@@ -8,15 +8,14 @@
 import Foundation
 import UIKit
 import AVFoundation
+import SwiftUI
 
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
-    @IBOutlet weak var audioIcon: UIImageView!
     @IBOutlet weak var maxDecibel: UILabel!
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var ProtectionRecommendation: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
     
@@ -30,16 +29,47 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     var link = DecibelManager()
     
+    let shapeLayer = CAShapeLayer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         stopRecordingButton.isEnabled = false
+        configureProgressBar()
+    }
+    
+    // Handels the circular progress bar
+    func configureProgressBar()
+    {
+        let center = view.center
+        
+        // create my track layer
+        let trackLayer = CAShapeLayer()
+        
+        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        trackLayer.path = circularPath.cgPath
+        
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.lineWidth = 10
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.lineCap = CAShapeLayerLineCap.round
+        view.layer.addSublayer(trackLayer)
+        
+        shapeLayer.path = circularPath.cgPath
+        
+        shapeLayer.strokeColor = UIColor.red.cgColor
+        shapeLayer.lineWidth = 10
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        
+        shapeLayer.strokeEnd = 0
+        
+        view.layer.addSublayer(shapeLayer)
     }
     
     @IBAction func pressedRecord(_ sender: UIButton)
     {
         // Keeps the record button disabled while already recording
-        statusLabel.text = "Decibel Tracking in Progress"
         stopRecordingButton.isEnabled = true
         recordButton.isEnabled = false
                 
@@ -63,10 +93,24 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dBFS = audioRecorder.averagePower(forChannel: 0)
         link.calculateDecibels(decibelIn: dBFS)
 
-        decibel.text = link.getDecibel()
+        decibel.text = link.getFormattedDecibel()
         maxDecibel.text = link.getMaxDecibel()
-        audioIcon.tintColor = link.getTintColor()
         ProtectionRecommendation.text = link.getProtectionRec()
+                
+        let dB = link.getDecibelValue()
+        let normalizedValue = (dB - 0) / (115.0 - 0)
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        // progress bar fills up at 0.9
+        basicAnimation.toValue = normalizedValue - 0.1
+        
+        basicAnimation.duration = 0.00001
+        
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
     }
     
     @objc func averageTimerCallback()
@@ -76,7 +120,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         leqValues.append(weightedIntensity)
         let twa = Float(leqValues.reduce(0.0, +) / (Float(leqValues.count) * 2))
         let avgDB = 10 * log10(twa)
-        averageDecibel.text = String(format: "LEQ: %.0f dB", avgDB)
+        averageDecibel.text = String(format: "%.0f", avgDB)
         
     }
 
@@ -85,7 +129,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         stopRecordingButton.isEnabled = false
         recordButton.isEnabled = true
-        statusLabel.text = "Tap to Record"
         decibel.text = String(format: "%.0f dB", 0)
         leqValues.removeAll()
                 
@@ -101,7 +144,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         // Assuming our recording saved successfully, jump to the next view
         if flag
         {
-            performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)            
+            performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)
         }
         else
         {
@@ -125,3 +168,4 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         performSegue(withIdentifier: "goToReferences", sender: self)
     }
 }
+
