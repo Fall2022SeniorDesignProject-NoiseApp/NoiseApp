@@ -7,47 +7,65 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
+class SettingsViewController: UIViewController
+{
     @IBOutlet weak var standardLabel: UILabel!
     @IBOutlet weak var toggleNIOSH: UIButton!
     @IBOutlet weak var toggleOSHA: UIButton!
+    
+    let OSHA_LOWBOUND: Float = 70.0
+    let OSHA_HIGHBOUND: Float = 90.0
+    let NIOSH_LOWBOUND: Float = 70.0
+    let NIOSH_HIGHBOUND: Float = 85.0    
+    
     var link = DecibelManager()
     static var state = "OSHA"
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        if (SettingsViewController.state == "OSHA") {
+        configureView()
+    }
+    
+    func configureView()
+    {
+        // Sets OSHA as the default standandard
+        if (SettingsViewController.state == "OSHA")
+        {
             standardLabel.text = "OSHA Standards"
             toggleOSHA.isEnabled = false
             toggleNIOSH.isEnabled = true
         }
-        else {
+        else
+        {
             standardLabel.text = "NIOSH Standards"
             toggleOSHA.isEnabled = true
             toggleNIOSH.isEnabled = false
         }
     }
 
-    @IBAction func returnHome(_ sender: UIButton) {
+    @IBAction func returnHome(_ sender: UIButton)
+    {
             dismiss(animated: true)
     }
     
-    @IBAction func oshaPressed(_ sender: UIButton) {
+    @IBAction func oshaPressed(_ sender: UIButton)
+    {
         standardLabel.text = "OSHA Standards"
         toggleNIOSH.isEnabled = true
         toggleOSHA.isEnabled = false
-        link.setBoundHigh(number: 90)
-        link.setBoundLow(number: 70)
+        link.setBoundLow(number: OSHA_LOWBOUND)
+        link.setBoundHigh(number: OSHA_HIGHBOUND)
         SettingsViewController.state = "OSHA"
     }
     
-    @IBAction func nioshPressed(_ sender: UIButton) {
+    @IBAction func nioshPressed(_ sender: UIButton)
+    {
         standardLabel.text = "NIOSH Standards"
         toggleOSHA.isEnabled = true
         toggleNIOSH.isEnabled = false
-        link.setBoundHigh(number: 85)
-        link.setBoundLow(number: 65)
+        link.setBoundLow(number: NIOSH_LOWBOUND)
+        link.setBoundHigh(number: NIOSH_HIGHBOUND)
         SettingsViewController.state = "NIOSH"
     }
     
