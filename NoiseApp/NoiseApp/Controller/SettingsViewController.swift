@@ -68,5 +68,4 @@ class SettingsViewController: UIViewController
         link.setBoundHigh(number: NIOSH_HIGHBOUND)
         SettingsViewController.state = "NIOSH"
     }
-    
 }

@@ -16,18 +16,20 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
+        
+    let shapeLayer = CAShapeLayer()
+    let REFRESH_RATE = 0.00001
+    let OFFSET: Float = 0.1
+    let MIN_DB: Float = 0
+    let MAX_DB: Float = 115
     
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
     var averageTimer = Timer()
-    
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
     var leqValues: [Float] = []
-    
     var link = DecibelManager()
-    
-    let shapeLayer = CAShapeLayer()
     
     override func viewDidLoad()
     {
@@ -43,10 +45,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         // create my track layer
         let trackLayer = CAShapeLayer()
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 135, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
-        
-        trackLayer.strokeColor = UIColor.lightGray.cgColor
+                
+        trackLayer.strokeColor = #colorLiteral(red: 0.04858401418, green: 0.1353752613, blue: 0.2516219318, alpha: 1)
         trackLayer.lineWidth = 10
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.lineCap = CAShapeLayerLineCap.round
@@ -54,7 +56,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
         shapeLayer.path = circularPath.cgPath
         
-        shapeLayer.strokeColor = UIColor.orange.cgColor
+        shapeLayer.strokeColor = #colorLiteral(red: 0.9490196078, green: 0.3960784314, blue: 0.1333333333, alpha: 1)
         shapeLayer.lineWidth = 10
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -102,14 +104,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dB = link.getDecibelValue()
         if (dB >= 90)
         {
-            let dB = String(format: "%.f", link.getDecibelValue())
+            let dB = link.getMaxDecibel()
             let msg = "\(dB) is a dangerous dB level, consider using hearing protection."
             let popup = UIAlertController(title: link.getProtectionRec(), message: msg, preferredStyle: .alert)
             let dismiss = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             
             popup.addAction(dismiss)
             present(popup, animated: true)
-            //endRecording()
         }
     }
     
@@ -124,14 +125,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         monitorDecibels()
                 
         let dB = link.getDecibelValue()
-        let normalizedValue = (dB - 0) / (115.0 - 0)
+        let normalizedValue = (dB - MIN_DB) / (MAX_DB - MIN_DB)
         
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         // progress bar fills up at 0.9
-        basicAnimation.toValue = normalizedValue - 0.1
+        basicAnimation.toValue = normalizedValue - OFFSET
         
-        basicAnimation.duration = 0.00001
+        basicAnimation.duration = REFRESH_RATE
         
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
