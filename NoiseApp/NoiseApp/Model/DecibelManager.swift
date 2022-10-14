@@ -19,6 +19,7 @@ struct DecibelManager
     let NIOSH_LOWBOUND: Float = 70.0
     let NIOSH_HIGHBOUND: Float = 85.0
     
+    
     var decibelData: DecibelData?
     var maxDB: Float = 0.0
     
@@ -133,4 +134,26 @@ struct DecibelManager
     {
         maxDB = 0.0
     }
+    
+    mutating func maxTimeAllowed(decibelIn: Float) -> Float
+    {
+        return 8 / (powf(2, (decibelIn - 90) / 5))
+    }
+    
+    mutating func dosagePerTime(decibelIn: Float, minutes: Int) -> Float
+    {
+        return Float(minutes)/(60 * 8/(powf(2, (decibelIn - 90) / 5)))
+    }
+    
+    mutating func dosagePerTimeWithProtection(decibelIn: Float, minutes: Int, NRR: Int) -> Float
+    {
+        let adjustedDecibel: Float = decibelIn - 90.0
+        let adjustedNRR: Float = (Float(NRR) - 7.0)/2.0
+        let exponent = adjustedDecibel - adjustedNRR
+        return Float(minutes)/(60 * 8/(powf(2, Float(exponent/5))))
+
+        
+    }
+    
 }
+ 

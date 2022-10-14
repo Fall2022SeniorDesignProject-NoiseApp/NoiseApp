@@ -72,6 +72,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if (actionButton.tag == 0)
         {
             // begin recording
+            resetReadings()
             let symbol = UIImage(systemName: "pause.circle")
             actionButton.setImage(symbol, for: .normal)
             actionButton.tag = 1
@@ -162,7 +163,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         actionButton.isEnabled = true
         leqValues.removeAll()
-        resetReadings()
                 
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
