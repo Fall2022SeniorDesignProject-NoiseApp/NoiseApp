@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import AVFoundation
 
-struct DecibelManager
+class DecibelManager
 {
-    //Andy Hines: I am developing using a remote Mac desktop so I'm unable to test the success of implementing the OSHA/NIOSH bounds. If we're having problems, it's probably because multiple controllers are creating instances of DecibelManager(). In that case we should add a static shared instance then access it from each other controller instead of creating "var link".
-    
-    // Properties
+    // Singleton referenced in controllers
+    static let sharedInstance = DecibelManager()
+    // Properies
     let OSHA_LOWBOUND: Float = 70.0
     let OSHA_HIGHBOUND: Float = 90.0
     let NIOSH_LOWBOUND: Float = 70.0
@@ -25,21 +25,17 @@ struct DecibelManager
     
     var boundLow: Float!
     var boundHigh: Float!
+    var dB: Float!
     
     var settingsVC: SettingsViewController!
     
+    private init() {
+        setDefaultDecibelStandard()
+    }
+    
     // Methods
-    mutating func calculateDecibels(decibelIn: Float)
+    func calculateDecibels(decibelIn: Float)
     {
-        // needs work
-        if (boundLow == nil && boundHigh == nil)
-        {
-            setDefaultDecibelStandard()
-        }
-        
-        print("Current lowbound: \(boundLow!)")
-        print("Current highbound: \(boundHigh!)")
-        
         let dB = 20 * log10(5 * powf(10, (decibelIn/20)) * 160) + 11
         if (dB > maxDB)
         {
@@ -60,7 +56,7 @@ struct DecibelManager
         }        
     }
     
-    mutating func setDefaultDecibelStandard()
+    func setDefaultDecibelStandard()
     {
         // Currently the default is the OSHA standards
         boundLow = OSHA_LOWBOUND
@@ -116,36 +112,32 @@ struct DecibelManager
         try! session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
     }
     
-    mutating func setBoundHigh(number: Float)
+    func setBoundHigh(number: Float)
     {
         boundHigh = number
-        print("called setBoundHigh")
-        print(boundHigh!)
     }
     
-    mutating func setBoundLow(number: Float)
+    func setBoundLow(number: Float)
     {
         boundLow = number
-        print("Called setBoundLow")
-        print(boundLow!)
     }
     
-    mutating func clearMaxDecibel()
+    func clearMaxDecibel()
     {
         maxDB = 0.0
     }
     
-    mutating func maxTimeAllowed(decibelIn: Float) -> Float
+    func maxTimeAllowed(decibelIn: Float) -> Float
     {
         return 8 / (powf(2, (decibelIn - 90) / 5))
     }
     
-    mutating func dosagePerTime(decibelIn: Float, minutes: Int) -> Float
+    func dosagePerTime(decibelIn: Float, minutes: Int) -> Float
     {
         return Float(minutes)/(60 * 8/(powf(2, (decibelIn - 90) / 5)))
     }
     
-    mutating func dosagePerTimeWithProtection(decibelIn: Float, minutes: Int, NRR: Int) -> Float
+    func dosagePerTimeWithProtection(decibelIn: Float, minutes: Int, NRR: Int) -> Float
     {
         let adjustedDecibel: Float = decibelIn - 90.0
         let adjustedNRR: Float = (Float(NRR) - 7.0)/2.0

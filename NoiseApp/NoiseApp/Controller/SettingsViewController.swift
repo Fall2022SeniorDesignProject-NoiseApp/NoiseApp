@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController
     let NIOSH_LOWBOUND: Float = 70.0
     let NIOSH_HIGHBOUND: Float = 85.0    
     
-    var link = DecibelManager()
+    let link = DecibelManager.sharedInstance
     static var state = "OSHA"
     
     override func viewDidLoad()
@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController
     
     func configureView()
     {
-        // Sets OSHA as the default standandard
+        // Sets OSHA as the default standard
         if (SettingsViewController.state == "OSHA")
         {
             standardLabel.text = "OSHA Standards"

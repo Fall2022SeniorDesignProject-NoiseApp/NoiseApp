@@ -223,9 +223,8 @@
                                     <action selector="pressedHome:" destination="Ydr-pA-5OF" eventType="touchUpInside" id="U2o-rN-8jc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIC-kw-z8f">
-                                <rect key="frame" x="103" y="265" width="208" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIC-kw-z8f">
+                                <rect key="frame" x="103" y="253.5" width="208" height="34.5"/>
                                 <color key="tintColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="NIOSH Noise Guidelines">
@@ -235,9 +234,8 @@
                                     <action selector="pressedNIOSH:" destination="Ydr-pA-5OF" eventType="touchUpInside" id="Adk-WJ-Ft4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2k-O2-yu3">
-                                <rect key="frame" x="105" y="194" width="208" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2k-O2-yu3">
+                                <rect key="frame" x="106" y="194" width="202" height="34.5"/>
                                 <color key="tintColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" titleAlignment="center">
@@ -250,20 +248,61 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                     <action selector="pressedOSHA:" destination="Ydr-pA-5OF" eventType="touchUpInside" id="Hst-fS-Hvv"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Decibel number..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5hF-Pz-1WL">
+                                <rect key="frame" x="97" y="380.5" width="220" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="QnV-np-cSe"/>
+                                </constraints>
+                                <color key="textColor" red="0.070545369899534388" green="0.20746328755710211" blue="0.37984637158144319" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="textEntered:" destination="Ydr-pA-5OF" eventType="valueChanged" id="X99-KJ-WFp"/>
+                                    <action selector="textFieldTapped:" destination="Ydr-pA-5OF" eventType="editingDidBegin" id="Vxl-en-XXb"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Exposure Dosage Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCH-d9-8cR">
+                                <rect key="frame" x="39.5" y="334" width="335.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6S-vD-CBu">
+                                <rect key="frame" x="100" y="436" width="214" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="30d-VS-Auq"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.1333333333" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Hel-x1-y0t" firstAttribute="centerX" secondItem="xbh-3C-KLH" secondAttribute="centerX" id="2x1-rb-Zpb"/>
+                            <constraint firstItem="WIC-kw-z8f" firstAttribute="centerX" secondItem="b2k-O2-yu3" secondAttribute="centerX" id="4m8-rA-nc2"/>
                             <constraint firstItem="2OK-7o-NWa" firstAttribute="leading" secondItem="30d-VS-Auq" secondAttribute="leading" constant="38" id="ANl-NY-LoQ"/>
+                            <constraint firstItem="Z6S-vD-CBu" firstAttribute="top" secondItem="5hF-Pz-1WL" secondAttribute="bottom" constant="21.5" id="HlV-ht-nP3"/>
+                            <constraint firstItem="b2k-O2-yu3" firstAttribute="centerX" secondItem="Hel-x1-y0t" secondAttribute="centerX" id="I3y-n8-Ene"/>
+                            <constraint firstItem="5hF-Pz-1WL" firstAttribute="top" secondItem="zCH-d9-8cR" secondAttribute="bottom" constant="20" id="KMQ-ob-cQ7"/>
+                            <constraint firstItem="5hF-Pz-1WL" firstAttribute="centerX" secondItem="30d-VS-Auq" secondAttribute="centerX" id="KvL-tM-dU9"/>
+                            <constraint firstItem="Z6S-vD-CBu" firstAttribute="centerX" secondItem="30d-VS-Auq" secondAttribute="centerX" id="LYw-mY-NyF"/>
+                            <constraint firstItem="b2k-O2-yu3" firstAttribute="top" secondItem="Hel-x1-y0t" secondAttribute="bottom" constant="32" id="NAf-BW-i9R"/>
+                            <constraint firstItem="30d-VS-Auq" firstAttribute="trailing" secondItem="Z6S-vD-CBu" secondAttribute="trailing" constant="100" id="ODP-jq-gkC"/>
+                            <constraint firstItem="zCH-d9-8cR" firstAttribute="centerX" secondItem="30d-VS-Auq" secondAttribute="centerX" id="QY0-IA-I0l"/>
+                            <constraint firstItem="WIC-kw-z8f" firstAttribute="top" secondItem="b2k-O2-yu3" secondAttribute="bottom" constant="25" id="dJe-xZ-bFy"/>
                             <constraint firstItem="Hel-x1-y0t" firstAttribute="top" secondItem="30d-VS-Auq" secondAttribute="top" constant="81" id="gNc-uI-LmV"/>
+                            <constraint firstItem="Z6S-vD-CBu" firstAttribute="leading" secondItem="30d-VS-Auq" secondAttribute="leading" constant="100" id="mHh-Ac-XdC"/>
+                            <constraint firstItem="zCH-d9-8cR" firstAttribute="top" secondItem="WIC-kw-z8f" secondAttribute="bottom" constant="46" id="rwq-7k-tia"/>
                             <constraint firstItem="2OK-7o-NWa" firstAttribute="top" secondItem="30d-VS-Auq" secondAttribute="top" constant="18" id="tpB-Vi-A6f"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="doseInput" destination="5hF-Pz-1WL" id="sfa-N1-8Hs"/>
+                        <outlet property="doseReadout" destination="Z6S-vD-CBu" id="5VJ-eE-wZn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="140-0N-SqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="770" y="481"/>
+            <point key="canvasLocation" x="769.56521739130437" y="480.80357142857139"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="lzz-tB-R9l">
