@@ -29,7 +29,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
     var leqValues: [Float] = []
-    var link = DecibelManager()
+    let link = DecibelManager.sharedInstance
     
     override func viewDidLoad()
     {
@@ -103,7 +103,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     func monitorDecibels()
     {
         let dB = link.getDecibelValue()
-        if (dB >= 90)
+        if (dB >= link.boundHigh)
         {
             let dB = link.getMaxDecibel()
             let msg = "\(dB) is a dangerous dB level, consider using hearing protection."

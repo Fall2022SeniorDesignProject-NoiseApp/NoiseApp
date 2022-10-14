@@ -9,11 +9,16 @@ import UIKit
 
 class ReferencesViewController: UIViewController
 {
-
+    @IBOutlet weak var doseReadout: UILabel!
+    @IBOutlet weak var doseInput: UITextField!
+    
+    let link = DecibelManager.sharedInstance
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        doseReadout.isHidden = true
+        doseInput.delegate = self
     }
 
     @IBAction func pressedOSHA(_ sender: UIButton) {
@@ -27,5 +32,23 @@ class ReferencesViewController: UIViewController
     @IBAction func pressedHome(_ sender: UIButton)
     {
         dismiss(animated: true)
+    }
+
+    @IBAction func textFieldTapped(_ sender: UITextField) {
+        doseInput.text = ""
+        doseInput.becomeFirstResponder()
+        doseInput.textColor = #colorLiteral(red: 0.04858401418, green: 0.1353752613, blue: 0.2516219318, alpha: 1)
+    }
+    
+}
+
+extension ReferencesViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let input = Float(textField.text!) ?? 0
+        let dosage = link.maxTimeAllowed(decibelIn: input) //this should be rounded off to 1 or 2 decimal places
+        doseReadout.text = "At \(input) dB without hearing protection, you will be exposed to your maximum daily noise dosage in \(dosage) hours."
+        doseReadout.isHidden = false
+        textField.resignFirstResponder()
+        return true
     }
 }

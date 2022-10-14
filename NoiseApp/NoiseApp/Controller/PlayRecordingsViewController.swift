@@ -20,7 +20,7 @@ class PlayRecordingsViewController: UIViewController, AVAudioPlayerDelegate
     var audioPlayerNode: AVAudioPlayerNode!
     var stopTimer: Timer!
     
-    var link = DecibelManager()
+    let link = DecibelManager.sharedInstance
     
     override func viewDidLoad()
     {
