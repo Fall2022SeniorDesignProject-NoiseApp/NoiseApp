@@ -32,13 +32,13 @@ class SettingsViewController: UIViewController
         // Sets OSHA as the default standard
         if (SettingsViewController.state == "OSHA")
         {
-            standardLabel.text = "OSHA Standards"
+            standardLabel.text = "OSHA Guidelines"
             toggleOSHA.isEnabled = false
             toggleNIOSH.isEnabled = true
         }
         else
         {
-            standardLabel.text = "NIOSH Standards"
+            standardLabel.text = "NIOSH Guidelines"
             toggleOSHA.isEnabled = true
             toggleNIOSH.isEnabled = false
         }
