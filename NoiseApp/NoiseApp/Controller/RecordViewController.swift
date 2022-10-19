@@ -48,7 +48,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let circularPath = UIBezierPath(arcCenter: center, radius: 135, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
                 
-        trackLayer.strokeColor = #colorLiteral(red: 0.04858401418, green: 0.1353752613, blue: 0.2516219318, alpha: 1)
+        trackLayer.strokeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         trackLayer.lineWidth = 10
         trackLayer.fillColor = UIColor.clear.cgColor
         trackLayer.lineCap = CAShapeLayerLineCap.round
