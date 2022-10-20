@@ -16,7 +16,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var decibel: UILabel!
     @IBOutlet weak var averageDecibel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
-        
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var sessionTimer: UILabel!
+    @IBOutlet weak var dosageButton: UIButton!
+    
     let shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
     let OFFSET: Float = 0.1
@@ -26,8 +29,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
     var averageTimer = Timer()
+    var sessionLengthTimer = Timer()
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
+    var sessionLength: Float = 0.00
     var leqValues: [Float] = []
     let link = DecibelManager.sharedInstance
     
@@ -35,6 +40,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         super.viewDidLoad()
         configureProgressBar()
+
+        
     }
     
     // Handels the circular progress bar
@@ -72,7 +79,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if (actionButton.tag == 0)
         {
             // begin recording
-            resetReadings()
             let symbol = UIImage(systemName: "pause.circle")
             actionButton.setImage(symbol, for: .normal)
             actionButton.tag = 1
@@ -87,16 +93,17 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
             audioRecorder.prepareToRecord()
             audioRecorder.record()
             
+            sessionLengthTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(sessionTimerCallback), userInfo: nil, repeats: true)
             levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(levelTimerCallback), userInfo: nil, repeats: true)
             averageTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(averageTimerCallback), userInfo: nil, repeats: true)
         }
         else
         {
             // end recording
-            let symbol = UIImage(systemName: "record.circle")
+            let symbol = UIImage(systemName: "play.circle")
             actionButton.setImage(symbol, for: .normal)
             actionButton.tag = 0
-            endRecording()
+            pauseRecording()
         }
     }
     
@@ -151,6 +158,12 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         averageDecibel.text = String(format: "%.0f", avgDB)
     }
     
+    @objc func sessionTimerCallback()
+    {
+        sessionLength += 0.01
+        sessionTimer.text = String(format: "Session Timer: %.2f Seconds", sessionLength)
+    }
+    
     func resetReadings()
     {
         decibel.text = String(00)
@@ -159,7 +172,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         link.clearMaxDecibel()
     }
     
-    func endRecording()
+    func resetRecording()
     {
         actionButton.isEnabled = true
         leqValues.removeAll()
@@ -169,8 +182,34 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         try! audioSession.setActive(false)
         self.levelTimer.invalidate()
         self.averageTimer.invalidate()
+        self.sessionLengthTimer.invalidate()
+        self.sessionTimer.text = "Session Timer: 0.00 Seconds"
+        sessionLength = 0.00
+        
         
         // clear the reset the progress bar below
+    }
+    
+    func pauseRecording()
+    {
+        actionButton.isEnabled = true
+        audioRecorder.stop()
+        let audioSession = AVAudioSession.sharedInstance()
+        try! audioSession.setActive(false)
+        self.levelTimer.invalidate()
+        self.averageTimer.invalidate()
+        self.sessionLengthTimer.invalidate()
+        
+        // clear the reset the progress bar below
+    }
+    
+    @IBAction func ResetButtonPressed(_ sender: UIButton)
+    {
+        resetRecording()
+        resetReadings()
+        let symbol = UIImage(systemName: "record.circle")
+        actionButton.setImage(symbol, for: .normal)
+        actionButton.tag = 0
     }
     
 //    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
@@ -201,4 +240,5 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         performSegue(withIdentifier: "goToReferences", sender: self)
     }
+    
 }
