@@ -14,6 +14,7 @@
 		3F795A1F28ECDE5C00D77D94 /* DecibelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */; };
 		3F795A2128ECDEBF00D77D94 /* DecibelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */; };
 		FC0D76D62901F9B900A22580 /* DosageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D76D52901F9B900A22580 /* DosageViewController.swift */; };
+		FC0D76DB2903947200A22580 /* CurvedUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D76DA2903947200A22580 /* CurvedUILabel.swift */; };
 		FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */; };
 		FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */; };
 		FCED2A9428BFFC15003CF1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCED2A9228BFFC15003CF1E4 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelData.swift; sourceTree = "<group>"; };
 		3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelManager.swift; sourceTree = "<group>"; };
 		FC0D76D52901F9B900A22580 /* DosageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageViewController.swift; sourceTree = "<group>"; };
+		FC0D76DA2903947200A22580 /* CurvedUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedUILabel.swift; sourceTree = "<group>"; };
 		FCED2A8928BFFC15003CF1E4 /* NoiseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,9 +120,18 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		FC0D76D92903945400A22580 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				FC0D76DA2903947200A22580 /* CurvedUILabel.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
 		FCED2A8028BFFC15003CF1E4 = {
 			isa = PBXGroup;
 			children = (
+				FC0D76D92903945400A22580 /* CustomUI */,
 				FCED2A8B28BFFC15003CF1E4 /* NoiseApp */,
 				FCED2AA228BFFC16003CF1E4 /* NoiseAppTests */,
 				FCED2AAC28BFFC16003CF1E4 /* NoiseAppUITests */,
@@ -307,6 +318,7 @@
 				FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */,
 				3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */,
 				3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */,
+				FC0D76DB2903947200A22580 /* CurvedUILabel.swift in Sources */,
 				3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */,
 				2E0FE44C28F38241004E13DB /* SettingsViewController.swift in Sources */,
 			);

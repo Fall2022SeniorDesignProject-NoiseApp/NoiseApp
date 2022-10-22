@@ -161,7 +161,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @objc func sessionTimerCallback()
     {
         sessionLength += 0.01
-        sessionTimer.text = String(format: "Session Timer: %.2f Seconds", sessionLength)
+        sessionTimer.text = String(format: "%.2f", sessionLength)
     }
     
     func resetReadings()
