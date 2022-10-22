@@ -36,7 +36,7 @@ class DecibelManager
     // Methods
     func calculateDecibels(decibelIn: Float)
     {
-        let dB = 20 * log10(5 * powf(10, (decibelIn/20)) * 160) + 11
+        let dB = 20 * log10(5 * powf(10, (decibelIn/20)) * 160) + 28
         if (dB > maxDB)
         {
             maxDB = dB
