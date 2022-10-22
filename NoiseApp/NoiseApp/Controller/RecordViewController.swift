@@ -183,7 +183,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         self.levelTimer.invalidate()
         self.averageTimer.invalidate()
         self.sessionLengthTimer.invalidate()
-        self.sessionTimer.text = "Session Timer: 0.00 Seconds"
+        self.sessionTimer.text = "0.00"
         sessionLength = 0.00
         
         
