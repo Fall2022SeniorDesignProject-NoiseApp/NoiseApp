@@ -19,6 +19,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var sessionTimer: UILabel!
     @IBOutlet weak var dosageButton: UIButton!
+    @IBOutlet weak var saveSessionButton: UIButton!
     
     let shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
@@ -32,6 +33,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var sessionLengthTimer = Timer()
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
+    var sessionIdentifier = 0
     var sessionLength: Float = 0.00
     var leqValues: [Float] = []
     let link = DecibelManager.sharedInstance
@@ -44,7 +46,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
     }
     
-    // Handels the circular progress bar
+    // Handles the circular progress bar
     func configureProgressBar()
     {
         let center = view.center
@@ -154,7 +156,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let weightedIntensity = link.calculateIntensity(decibelIn: db!, timeInSeconds: 2.0)
         leqValues.append(weightedIntensity)
         let twa = Float(leqValues.reduce(0.0, +) / (Float(leqValues.count) * 2))
-        let avgDB = 10 * log10(twa)
+        avgDB = 10 * log10(twa)
         averageDecibel.text = String(format: "%.0f", avgDB)
     }
     
@@ -190,6 +192,22 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         // clear the reset the progress bar below
     }
     
+    @IBAction func saveButtonPressed()
+    {
+        let msg = "Save Session?"
+        let popup = UIAlertController(title: msg, message: "", preferredStyle: .actionSheet)
+        let saveAction = UIAlertAction(
+            title: "Yes",
+            style: .default) { [self] (action) in
+                self.performSegue(withIdentifier: "goToDosage", sender: sessionIdentifier)
+        }
+        let saveOptionRejected = UIAlertAction(title: "No", style: .default, handler: nil)
+        
+        popup.addAction(saveAction)
+        popup.addAction(saveOptionRejected)
+        present(popup, animated: true)
+    }
+    
     func pauseRecording()
     {
         actionButton.isEnabled = true
@@ -212,29 +230,16 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         actionButton.tag = 0
     }
     
-//    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool)
-//    {
-//        // Assuming our recording saved successfully, jump to the next view
-//        if flag
-//        {
-//            performSegue(withIdentifier: "playRecordings", sender: audioRecorder.url)
-//        }
-//        else
-//        {
-//            print("\n Error: Could not save recording")
-//        }
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-//    {
-//        // Makes sure to send the audio's file path to the next view
-//        if segue.identifier == "playRecordings"
-//        {
-//            let destinationVC = segue.destination as! PlayRecordingsViewController
-//            let url = sender as! URL
-//            destinationVC.recordedAudioURL = url
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+        {
+            // Makes sure to send the audio's file path to the next view
+            if segue.identifier == "goToDosage"
+            {
+                let destinationVC = segue.destination as! DosageViewController
+                destinationVC.currentSessionLEQ = avgDB
+                destinationVC.currentSessionLength = sessionLength
+            }
+        }
     
     @IBAction func ReferencesButtonPressed(_ sender: UIButton)
     {
