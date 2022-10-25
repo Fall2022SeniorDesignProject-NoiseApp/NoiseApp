@@ -15,6 +15,7 @@
 		3F795A2128ECDEBF00D77D94 /* DecibelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */; };
 		FC0D76D62901F9B900A22580 /* DosageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D76D52901F9B900A22580 /* DosageViewController.swift */; };
 		FC0D76DB2903947200A22580 /* CurvedUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0D76DA2903947200A22580 /* CurvedUILabel.swift */; };
+		FC0D76DE2907ADE100A22580 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0D76DD2907ADE000A22580 /* UIKit.framework */; };
 		FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */; };
 		FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */; };
 		FCED2A9428BFFC15003CF1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCED2A9228BFFC15003CF1E4 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelManager.swift; sourceTree = "<group>"; };
 		FC0D76D52901F9B900A22580 /* DosageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DosageViewController.swift; sourceTree = "<group>"; };
 		FC0D76DA2903947200A22580 /* CurvedUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedUILabel.swift; sourceTree = "<group>"; };
+		FC0D76DD2907ADE000A22580 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCED2A8928BFFC15003CF1E4 /* NoiseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCED2A8C28BFFC15003CF1E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCED2A8E28BFFC15003CF1E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0D76DE2907ADE100A22580 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +131,14 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		FC0D76DC2907ADDF00A22580 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC0D76DD2907ADE000A22580 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FCED2A8028BFFC15003CF1E4 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +147,7 @@
 				FCED2AA228BFFC16003CF1E4 /* NoiseAppTests */,
 				FCED2AAC28BFFC16003CF1E4 /* NoiseAppUITests */,
 				FCED2A8A28BFFC15003CF1E4 /* Products */,
+				FC0D76DC2907ADDF00A22580 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -499,16 +511,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NoiseApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoiseApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = SDP.NoiseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -526,16 +540,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NoiseApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoiseApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 4.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = SDP.NoiseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
