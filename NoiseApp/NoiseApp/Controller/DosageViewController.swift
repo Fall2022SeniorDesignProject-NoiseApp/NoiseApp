@@ -69,7 +69,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     func sessionPercentDosage(isProtectionOn: Bool) {
         let soundInput = Float(sessionLEQ.text ?? "0")
         let timeInput = Float(totalLength.text ?? "0")
-        if isProtectionOn == false {
+        if isProtectionOn == false || Int(hearingProtection.text!) == 0 {
             if timeInput! > 0.0 {
                 let doseIn = link.dosagePerTime(decibelIn: soundInput!, minutes: Int(timeInput!))
                 let processedDoseIn = doseIn * 100
