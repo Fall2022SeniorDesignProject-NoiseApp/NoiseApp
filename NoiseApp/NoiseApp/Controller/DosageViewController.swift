@@ -20,6 +20,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var totalLength: UITextField!
     @IBOutlet weak var maximumSafeTime: UITextField!
     @IBOutlet weak var percentDosage: UITextField!
+    @IBOutlet weak var toggleProtectionEffect: UIButton!
     
     var currentSessionLength: Float! = nil
     var currentSessionLEQ: Float! = nil
@@ -58,30 +59,42 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
             maximumSafeTime.text = "0 Hours. DANGER."
         }
         else if (doseIn < 10.0) {
-            maximumSafeTime.text = "\(dosagePrecise) hours."
+            maximumSafeTime.text = "\(dosagePrecise) HOURS"
         }
         else {
-            maximumSafeTime.text = "\(dosage) hours."
+            maximumSafeTime.text = "\(dosage) HOURS"
         }
     }
     
-    func sessionPercentDosage() {
+    func sessionPercentDosage(isProtectionOn: Bool) {
         let soundInput = Float(sessionLEQ.text ?? "0")
         let timeInput = Float(totalLength.text ?? "0")
-        //?? Float(textField.text!)
-        if timeInput! > 0.0 {
-            let doseIn = link.dosagePerTime(decibelIn: soundInput!, minutes: Int(timeInput!))
-            let processedDoseIn = doseIn * 100
-            percentDosage.text = String(format: "%.2f", processedDoseIn)
+        if isProtectionOn == false {
+            if timeInput! > 0.0 {
+                let doseIn = link.dosagePerTime(decibelIn: soundInput!, minutes: Int(timeInput!))
+                let processedDoseIn = doseIn * 100
+                percentDosage.text = String(format: "%.2f", processedDoseIn)
+            }
+            else {
+                percentDosage.text = "Total Time Not Given"
+            }
         }
-        else {
-            percentDosage.text = "Total Time Not Given"
+        else if isProtectionOn == true {
+            if timeInput! > 0.0 {
+                let doseIn = link.dosagePerTimeWithProtection(decibelIn: soundInput!, minutes: Int(timeInput!), NRR: Int(hearingProtection.text!)!)
+                let processedDoseIn = doseIn * 100
+                percentDosage.text = String(format: "%.2f", processedDoseIn)
+            }
+            else {
+                percentDosage.text = "Total Time Not Given"
+            }
         }
+        
     }
     
-    func updateAllOutputs() {
+    func updateAllOutputs(isProtectionOn: Bool) {
         maxTimeAllowed()
-        sessionPercentDosage()
+        sessionPercentDosage(isProtectionOn: isProtectionOn)
     }
 
     @IBAction func returnHome(_ sender: UIButton)
@@ -97,7 +110,30 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     
     @IBAction func textEditingEnded(_ sender: UITextField) {
         sender.resignFirstResponder()
-        updateAllOutputs()
+        if toggleProtectionEffect.tag == 0 {
+            updateAllOutputs(isProtectionOn: false)
+        }
+        else if toggleProtectionEffect.tag == 1 {
+            updateAllOutputs(isProtectionOn: true)
+        }
+        
+    }
+    
+    @IBAction func pressedToggleButton(_ sender: UIButton)
+    {
+        if (toggleProtectionEffect.tag == 0)
+        {
+            toggleProtectionEffect.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.3960784314, blue: 0.1333333333, alpha: 1)
+            toggleProtectionEffect.tag = 1
+            updateAllOutputs(isProtectionOn: true)
+            
+        }
+        else
+        {
+            toggleProtectionEffect.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            toggleProtectionEffect.tag = 0
+            updateAllOutputs(isProtectionOn: false)
+        }
     }
 }
 
