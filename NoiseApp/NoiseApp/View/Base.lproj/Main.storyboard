@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SESSION TIMER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C17-Le-xL2" userLabel="curvedSessionTimer" customClass="UILabelX" customModule="NoiseApp" customModuleProvider="target">
-                                <rect key="frame" x="143" y="109" width="139" height="118"/>
+                                <rect key="frame" x="137" y="109" width="139" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="Yim-NX-hj1"/>
                                 </constraints>
@@ -342,7 +342,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SECONDS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsJ-Ui-E7C" userLabel="bottomSessionTimerLabel">
-                                <rect key="frame" x="160" y="178" width="104" height="27"/>
+                                <rect key="frame" x="154" y="178" width="104" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="xgp-c7-xju"/>
                                     <constraint firstAttribute="width" constant="104" id="ylj-CB-WMX"/>
@@ -358,13 +358,13 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instantaneous dB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GY1-SJ-SEh">
-                                <rect key="frame" x="131" y="361" width="150" height="21"/>
+                                <rect key="frame" x="131" y="361" width="150" height="21.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.72914794000000005" green="0.35818819769999999" blue="0.184311471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qh-Tc-PIN" userLabel="sessionTimer">
-                                <rect key="frame" x="185" y="127" width="54" height="66"/>
+                                <rect key="frame" x="179" y="127" width="54" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="2E0-u1-Cdv"/>
                                     <constraint firstAttribute="width" constant="54" id="xRE-n7-3DM"/>
@@ -387,10 +387,10 @@
                             <constraint firstAttribute="bottom" secondItem="cQ3-LQ-1vn" secondAttribute="bottom" id="JV2-nn-qeo"/>
                             <constraint firstItem="HLr-e7-I33" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="N8P-Yf-51r"/>
                             <constraint firstAttribute="trailing" secondItem="Jy2-RV-1C2" secondAttribute="trailing" id="RPP-ec-TMn"/>
-                            <constraint firstItem="ndJ-1e-1hv" firstAttribute="leading" secondItem="C17-Le-xL2" secondAttribute="trailing" constant="14.5" id="Sio-s2-8P6"/>
+                            <constraint firstItem="ndJ-1e-1hv" firstAttribute="leading" secondItem="C17-Le-xL2" secondAttribute="trailing" constant="20.5" id="Sio-s2-8P6"/>
                             <constraint firstItem="HLr-e7-I33" firstAttribute="top" secondItem="Jy2-RV-1C2" secondAttribute="bottom" constant="30" id="TOn-i2-i4M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VGe-ew-opZ" secondAttribute="trailing" constant="40" id="Tck-dm-YDb"/>
-                            <constraint firstItem="ndJ-1e-1hv" firstAttribute="leading" secondItem="7qh-Tc-PIN" secondAttribute="trailing" constant="57.5" id="UGz-T1-J7Q"/>
+                            <constraint firstItem="ndJ-1e-1hv" firstAttribute="leading" secondItem="7qh-Tc-PIN" secondAttribute="trailing" constant="63.5" id="UGz-T1-J7Q"/>
                             <constraint firstItem="7qh-Tc-PIN" firstAttribute="centerY" secondItem="HLr-e7-I33" secondAttribute="centerY" id="YWR-0h-MFB"/>
                             <constraint firstItem="f8x-T8-8Es" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YqY-Zh-3eF"/>
                             <constraint firstItem="7qh-Tc-PIN" firstAttribute="centerY" secondItem="VGe-ew-opZ" secondAttribute="centerY" id="djM-SR-I4d"/>

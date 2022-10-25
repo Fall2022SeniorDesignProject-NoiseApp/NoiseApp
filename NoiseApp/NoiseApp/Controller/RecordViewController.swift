@@ -42,6 +42,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     {
         super.viewDidLoad()
         configureProgressBar()
+        saveSessionButton.isEnabled = false
+
 
         
     }
@@ -158,6 +160,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let twa = Float(leqValues.reduce(0.0, +) / (Float(leqValues.count) * 2))
         avgDB = 10 * log10(twa)
         averageDecibel.text = String(format: "%.0f", avgDB)
+        saveSessionButton.isEnabled = true
     }
     
     @objc func sessionTimerCallback()
@@ -228,11 +231,12 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let symbol = UIImage(systemName: "record.circle")
         actionButton.setImage(symbol, for: .normal)
         actionButton.tag = 0
+        saveSessionButton.isEnabled = false
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
         {
-            // Makes sure to send the audio's file path to the next view
             if segue.identifier == "goToDosage"
             {
                 let destinationVC = segue.destination as! DosageViewController
