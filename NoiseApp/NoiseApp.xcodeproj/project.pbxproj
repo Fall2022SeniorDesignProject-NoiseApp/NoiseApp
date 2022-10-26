@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		2E0FE44C28F38241004E13DB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FE44B28F38241004E13DB /* SettingsViewController.swift */; };
 		3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */; };
+		3F44AEB929087D1D00198CE6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44AEB829087D1D00198CE6 /* OnboardingViewController.swift */; };
+		3F44AEBB290882CC00198CE6 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44AEBA290882CC00198CE6 /* OnboardingSlide.swift */; };
+		3F44AEBD2908B08100198CE6 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44AEBC2908B08100198CE6 /* OnboardingCollectionViewCell.swift */; };
+		3F44AEC0290963FD00198CE6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44AEBF290963FD00198CE6 /* UIViewController+Extension.swift */; };
+		3F44AEC2290967DA00198CE6 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44AEC1290967DA00198CE6 /* UserDefaults+Extension.swift */; };
 		3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F63459E28C14F00007A8479 /* RecordViewController.swift */; };
 		3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */; };
 		3F795A1F28ECDE5C00D77D94 /* DecibelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */; };
@@ -46,6 +51,11 @@
 /* Begin PBXFileReference section */
 		2E0FE44B28F38241004E13DB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3F1745D728D2B7BE006FA583 /* ReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesViewController.swift; sourceTree = "<group>"; };
+		3F44AEB829087D1D00198CE6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		3F44AEBA290882CC00198CE6 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		3F44AEBC2908B08100198CE6 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F44AEBF290963FD00198CE6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		3F44AEC1290967DA00198CE6 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		3F63459E28C14F00007A8479 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		3F6345A028C14F3A007A8479 /* PlayRecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRecordingsViewController.swift; sourceTree = "<group>"; };
 		3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecibelData.swift; sourceTree = "<group>"; };
@@ -93,11 +103,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F44AEB729087CF600198CE6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3F44AEB829087D1D00198CE6 /* OnboardingViewController.swift */,
+				3F44AEBC2908B08100198CE6 /* OnboardingCollectionViewCell.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		3F44AEBE290963D800198CE6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F44AEBF290963FD00198CE6 /* UIViewController+Extension.swift */,
+				3F44AEC1290967DA00198CE6 /* UserDefaults+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3F795A1B28ECC29B00D77D94 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				3F795A1E28ECDE5C00D77D94 /* DecibelData.swift */,
 				3F795A2028ECDEBF00D77D94 /* DecibelManager.swift */,
+				3F44AEBA290882CC00198CE6 /* OnboardingSlide.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +134,7 @@
 		3F795A1C28ECC2A500D77D94 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3F44AEB729087CF600198CE6 /* Onboarding */,
 				FCED2A9228BFFC15003CF1E4 /* Main.storyboard */,
 				FCED2A9728BFFC16003CF1E4 /* LaunchScreen.storyboard */,
 			);
@@ -142,6 +172,7 @@
 		FCED2A8028BFFC15003CF1E4 = {
 			isa = PBXGroup;
 			children = (
+				3F44AEBE290963D800198CE6 /* Extensions */,
 				FC0D76D92903945400A22580 /* CustomUI */,
 				FCED2A8B28BFFC15003CF1E4 /* NoiseApp */,
 				FCED2AA228BFFC16003CF1E4 /* NoiseAppTests */,
@@ -323,15 +354,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F44AEBD2908B08100198CE6 /* OnboardingCollectionViewCell.swift in Sources */,
 				FCED2A8D28BFFC15003CF1E4 /* AppDelegate.swift in Sources */,
 				3F795A1F28ECDE5C00D77D94 /* DecibelData.swift in Sources */,
 				FC0D76D62901F9B900A22580 /* DosageViewController.swift in Sources */,
+				3F44AEC0290963FD00198CE6 /* UIViewController+Extension.swift in Sources */,
 				3F795A2128ECDEBF00D77D94 /* DecibelManager.swift in Sources */,
+				3F44AEBB290882CC00198CE6 /* OnboardingSlide.swift in Sources */,
 				FCED2A8F28BFFC15003CF1E4 /* SceneDelegate.swift in Sources */,
 				3F1745D828D2B7BE006FA583 /* ReferencesViewController.swift in Sources */,
 				3F6345A128C14F3A007A8479 /* PlayRecordingsViewController.swift in Sources */,
 				FC0D76DB2903947200A22580 /* CurvedUILabel.swift in Sources */,
 				3F63459F28C14F00007A8479 /* RecordViewController.swift in Sources */,
+				3F44AEB929087D1D00198CE6 /* OnboardingViewController.swift in Sources */,
+				3F44AEC2290967DA00198CE6 /* UserDefaults+Extension.swift in Sources */,
 				2E0FE44C28F38241004E13DB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
