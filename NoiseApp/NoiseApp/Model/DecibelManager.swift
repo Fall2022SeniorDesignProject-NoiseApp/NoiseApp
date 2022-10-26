@@ -36,7 +36,8 @@ class DecibelManager
     // Methods
     func calculateDecibels(decibelIn: Float)
     {
-        let dB = 20 * log10(5 * powf(10, (decibelIn/20)) * 160) + 24
+        let dB = 20 * log10(5 * powf(15, (decibelIn/20)) * 160) + 50
+        //let dB = (20 * log10(5 * powf(15, (decibelIn/20)) * 160) + 50)/2
         if (dB > maxDB)
         {
             maxDB = dB
@@ -109,7 +110,7 @@ class DecibelManager
     {
         // Creates a session needed to record/playback audio
         let session = AVAudioSession.sharedInstance()
-        try! session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
+        try! session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.duckOthers)
     }
     
     func setBoundHigh(number: Float)
