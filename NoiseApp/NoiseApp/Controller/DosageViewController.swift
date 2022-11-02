@@ -21,6 +21,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var maximumSafeTime: UITextField!
     @IBOutlet weak var percentDosage: UITextField!
     @IBOutlet weak var toggleProtectionEffect: UIButton!
+    @IBOutlet weak var midDisplay: UIView!
     
     var currentSessionLength: Float! = nil
     var currentSessionLEQ: Float! = nil
@@ -33,6 +34,14 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         super.viewDidLoad()
 //        doseReadout.isHidden = true
 //        doseInput.delegate = self
+        if link.isDarkMode {
+            view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
+            midDisplay.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
+        }
+        else {
+            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            midDisplay.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         importSession()
     }
     

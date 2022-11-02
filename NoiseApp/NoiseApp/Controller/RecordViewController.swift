@@ -20,6 +20,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var sessionTimer: UILabel!
     @IBOutlet weak var dosageButton: UIButton!
     @IBOutlet weak var saveSessionButton: UIButton!
+    @IBOutlet weak var alertCurrent: UILabel!
+    @IBOutlet weak var alertSession: UILabel!
     
     let shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
@@ -41,11 +43,30 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setColorMode()
         configureProgressBar()
         saveSessionButton.isEnabled = false
-
-
-        
+        alertCurrent.isHidden = true
+        alertSession.isHidden = true
+    }
+    
+    // Handles Light/Dark mode, because the other views are dismissed, this never gets refreshed, we need to find a way for this to happen regularly
+    func setColorMode()
+    {
+        if link.isDarkMode {
+            view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
+            decibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            maxDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            averageDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            sessionTimer.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        else {
+            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            decibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            maxDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            averageDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            sessionTimer.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
     }
     
     // Handles the circular progress bar
@@ -80,6 +101,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // rename this method and the UIButton
     @IBAction func pressedActionBtn(_ sender: UIButton)
     {
+        alertSession.isHidden = true
         if (actionButton.tag == 0)
         {
             // begin recording
@@ -116,14 +138,20 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dB = link.getDecibelValue()
         if (dB >= link.boundHigh)
         {
-            let dB = link.getMaxDecibel()
-            let msg = "\(dB) is a dangerous dB level, consider using hearing protection."
-            let popup = UIAlertController(title: link.getProtectionRec(), message: msg, preferredStyle: .alert)
-            let dismiss = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            //let dB = link.getMaxDecibel()
+            //let msg = "\(dB) is a dangerous dB level, consider using hearing protection."
+            //let popup = UIAlertController(title: link.getProtectionRec(), message: msg, preferredStyle: .alert)
+            //let dismiss = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             
-            popup.addAction(dismiss)
-            present(popup, animated: true)
+            //popup.addAction(dismiss)
+            //present(popup, animated: true)
+            alertSession.isHidden = false
+            alertCurrent.isHidden = false
         }
+        else {
+            alertCurrent.isHidden = true
+        }
+        
     }
     
     @objc func levelTimerCallback()
@@ -248,6 +276,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBAction func ReferencesButtonPressed(_ sender: UIButton)
     {
         performSegue(withIdentifier: "goToReferences", sender: self)
+    }
+    
+    
+    @IBAction func exitedSettings(_ sender: UIButton) {
+        setColorMode()
     }
     
 }

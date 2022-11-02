@@ -9,9 +9,17 @@ import UIKit
 
 class ReferencesViewController: UIViewController
 {
+    let link = DecibelManager.sharedInstance
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        if link.isDarkMode {
+            view.backgroundColor = #colorLiteral(red: 0.04705882353, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+        }
+        else {
+            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
     }
 
     @IBAction func pressedOSHA(_ sender: UIButton) {
