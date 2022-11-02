@@ -26,11 +26,13 @@ class DecibelManager
     var boundLow: Float!
     var boundHigh: Float!
     var dB: Float!
+    var isDarkMode: Bool!
     
     var settingsVC: SettingsViewController!
     
     private init() {
         setDefaultDecibelStandard()
+        setDarkMode(value: true)
     }
     
     // Methods
@@ -146,6 +148,11 @@ class DecibelManager
         return Float(minutes)/(60 * 8/(powf(2, Float(exponent/5))))
 
         
+    }
+    
+    func setDarkMode(value: Bool)
+    {
+        isDarkMode = value
     }
     
 }
