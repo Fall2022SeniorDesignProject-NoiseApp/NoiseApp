@@ -73,10 +73,12 @@ class SettingsViewController: UIViewController
     
     @IBAction func colorSwitchActivated(_ sender: UISwitch)
     {
-        if sender.isOn {
+        if sender.isOn
+        {
             link.setDarkMode(value: true)
         }
-        else {
+        else
+        {
             link.setDarkMode(value: false)
         }
         setColorMode()
@@ -84,15 +86,17 @@ class SettingsViewController: UIViewController
     
     func setColorMode()
     {
-        if link.isDarkMode {
+        if link.isDarkMode
+        {
             view.backgroundColor = #colorLiteral(red: 0.04705882353, green: 0.137254902, blue: 0.2509803922, alpha: 1)
             standardLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            colorSwitch.setOn(true, animated: false)
+            colorSwitch.setOn(true, animated: true)
         }
-        else {
+        else
+        {            
             view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             standardLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            colorSwitch.setOn(false, animated: false)
+            colorSwitch.setOn(false, animated: true)
         }
     }
 }

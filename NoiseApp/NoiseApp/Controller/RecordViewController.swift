@@ -40,33 +40,44 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var leqValues: [Float] = []
     let link = DecibelManager.sharedInstance
     
+    // Runs the first time the app is loaded into memory
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setColorMode()
+        
+        // Sets the default color to light mode
+        link.isDarkMode = false
         configureProgressBar()
         saveSessionButton.isEnabled = false
         alertCurrent.isHidden = true
         alertSession.isHidden = true
     }
     
-    // Handles Light/Dark mode, because the other views are dismissed, this never gets refreshed, we need to find a way for this to happen regularly
+    // Runs every time this views appears on screen
+    override func viewWillAppear(_ animated: Bool)
+    {
+        setColorMode()
+    }
+    
     func setColorMode()
     {
-        if link.isDarkMode {
+        if link.isDarkMode
+        {
             view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
             decibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             maxDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             averageDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             sessionTimer.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
-        else {
+        else
+        {
             view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             decibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             maxDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             averageDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             sessionTimer.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
+        
     }
     
     // Handles the circular progress bar
@@ -218,9 +229,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         self.sessionLengthTimer.invalidate()
         self.sessionTimer.text = "0.00"
         sessionLength = 0.00
-        
-        
-        // clear the reset the progress bar below
     }
     
     @IBAction func saveButtonPressed()
@@ -264,14 +272,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "goToDosage"
         {
-            if segue.identifier == "goToDosage"
-            {
-                let destinationVC = segue.destination as! DosageViewController
-                destinationVC.currentSessionLEQ = avgDB
-                destinationVC.currentSessionLength = sessionLength
-            }
+            let destinationVC = segue.destination as! DosageViewController
+            destinationVC.currentSessionLEQ = avgDB
+            destinationVC.currentSessionLength = sessionLength
         }
+    }
     
     @IBAction func ReferencesButtonPressed(_ sender: UIButton)
     {
@@ -279,8 +287,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     }
     
     
-    @IBAction func exitedSettings(_ sender: UIButton) {
+    @IBAction func exitedSettings(_ sender: UIButton)
+    {
         setColorMode()
     }
-    
 }

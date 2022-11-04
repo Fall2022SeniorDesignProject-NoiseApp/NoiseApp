@@ -13,12 +13,12 @@ class DecibelManager
 {
     // Singleton referenced in controllers
     static let sharedInstance = DecibelManager()
+    
     // Properies
     let OSHA_LOWBOUND: Float = 70.0
     let OSHA_HIGHBOUND: Float = 90.0
     let NIOSH_LOWBOUND: Float = 70.0
     let NIOSH_HIGHBOUND: Float = 85.0
-    
     
     var decibelData: DecibelData?
     var maxDB: Float = 0.0
@@ -30,7 +30,8 @@ class DecibelManager
     
     var settingsVC: SettingsViewController!
     
-    private init() {
+    private init()
+    {
         setDefaultDecibelStandard()
         setDarkMode(value: true)
     }
@@ -146,14 +147,10 @@ class DecibelManager
         let adjustedNRR: Float = (Float(NRR) - 7.0)/2.0
         let exponent = adjustedDecibel - adjustedNRR
         return Float(minutes)/(60 * 8/(powf(2, Float(exponent/5))))
-
-        
     }
     
     func setDarkMode(value: Bool)
     {
         isDarkMode = value
     }
-    
 }
- 
