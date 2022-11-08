@@ -790,29 +790,22 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                 <color key="backgroundColor" red="0.070588238540000001" green="0.13333332540000001" blue="0.24313727020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvG-n7-g7k" userLabel="Bottom Menu">
-                                <rect key="frame" x="0.0" y="606" width="415" height="246"/>
+                                <rect key="frame" x="0.0" y="512" width="415" height="340"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zSV-Qb-93a">
-                                        <rect key="frame" x="0.0" y="8" width="400" height="238"/>
+                                        <rect key="frame" x="0.0" y="8" width="400" height="332"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Session LEQ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcO-eR-UAY">
-                                                <rect key="frame" x="30" y="8" width="129" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Length (Min)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nb-GH-ttJ">
-                                                <rect key="frame" x="213" y="78" width="172.33333333333331" height="26.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Length (Min)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nb-GH-ttJ">
+                                                <rect key="frame" x="219" y="133" width="157" height="53"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncs-lZ-Xhv" userLabel="sessionLEQ">
-                                                <rect key="frame" x="18" y="38" width="162" height="34"/>
+                                                <rect key="frame" x="18" y="65" width="162" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.091694646032980373" green="0.17878197460779674" blue="0.32713505717509472" alpha="0.67093208767720403" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="textColor" systemColor="systemGray6Color"/>
@@ -824,7 +817,7 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Bn-qb-qf1" userLabel="totalLength">
-                                                <rect key="frame" x="217" y="113" width="162" height="34"/>
+                                                <rect key="frame" x="216" y="197" width="162" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.091694646029999993" green="0.1787819746" blue="0.32713505720000002" alpha="0.67093208770000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="textColor" systemColor="systemGray6Color"/>
@@ -835,15 +828,15 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                                     <action selector="textFieldTapped:" destination="k3w-9e-PXz" eventType="editingDidBegin" id="YVb-dg-fyg"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recording Length" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFu-1S-LyP">
-                                                <rect key="frame" x="203" y="8" width="181.66666666666663" height="26.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recording Length (Seconds)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFu-1S-LyP">
+                                                <rect key="frame" x="203" y="10" width="182" height="49"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgO-7a-Ocn" userLabel="sessionLength">
-                                                <rect key="frame" x="213" y="40" width="168.33333333333337" height="34"/>
+                                                <rect key="frame" x="210" y="65" width="168.33333333333337" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.091694646029999993" green="0.1787819746" blue="0.32713505720000002" alpha="0.67093208770000001" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="textColor" systemColor="systemGray6Color"/>
@@ -853,15 +846,27 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                                     <action selector="textFieldTapped:" destination="k3w-9e-PXz" eventType="editingDidBegin" id="JlF-zi-YoS"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hearing Protection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9L-rL-VoN">
-                                                <rect key="frame" x="8" y="78" width="193.33333333333334" height="26.333333333333329"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Hearing Protection (NRR)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9L-rL-VoN">
+                                                <rect key="frame" x="3" y="131" width="193" height="57"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhi-pK-klZ" userLabel="hearingProtectionUsed">
+                                                <rect key="frame" x="16" y="197" width="167" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.091694646029999993" green="0.1787819746" blue="0.32713505720000002" alpha="0.67093208770000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="textColor" systemColor="systemGray6Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <action selector="textEditingEnded:" destination="k3w-9e-PXz" eventType="editingDidEnd" id="W2F-KW-r9z"/>
+                                                    <action selector="textFieldTapped:" destination="k3w-9e-PXz" eventType="editingDidBegin" id="UXj-6d-xqA"/>
+                                                </connections>
+                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I98-H1-MTp">
-                                                <rect key="frame" x="23" y="167" width="162" height="37"/>
+                                                <rect key="frame" x="119" y="253" width="162" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="tintColor" systemColor="systemGray6Color"/>
@@ -874,25 +879,20 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                                     <action selector="pressedToggleButton:" destination="k3w-9e-PXz" eventType="touchUpInside" id="bOy-ud-EQc"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhi-pK-klZ" userLabel="hearingProtectionUsed">
-                                                <rect key="frame" x="16" y="133" width="167" height="14"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Session LEQ (dB)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcO-eR-UAY">
+                                                <rect key="frame" x="35" y="10" width="129" height="49"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.091694646029999993" green="0.1787819746" blue="0.32713505720000002" alpha="0.67093208770000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <color key="textColor" systemColor="systemGray6Color"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <connections>
-                                                    <action selector="textEditingEnded:" destination="k3w-9e-PXz" eventType="editingDidEnd" id="W2F-KW-r9z"/>
-                                                    <action selector="textFieldTapped:" destination="k3w-9e-PXz" eventType="editingDidBegin" id="UXj-6d-xqA"/>
-                                                </connections>
-                                            </textField>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.070588238540000001" green="0.13333332540000001" blue="0.24313727020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfo-kp-0WJ" userLabel="outputMenu">
-                                <rect key="frame" x="0.0" y="243" width="393" height="366"/>
+                                <rect key="frame" x="0.0" y="243" width="393" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Juh-09-HX1" userLabel="maximumSafeTime">
@@ -945,7 +945,7 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                         <rect key="frame" x="104" y="101" width="184" height="57"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <color key="textColor" red="0.72914794000000005" green="0.35818819769999999" blue="0.184311471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" red="0.88218617440000002" green="0.43087828160000002" blue="0.2195191383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -962,7 +962,7 @@ T1NIQSBOb2lzZSBHdWlkZWxpbmVzCA
                                 <rect key="frame" x="78" y="197" width="237" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" red="0.75979506370000005" green="0.37324335650000001" blue="0.19205834399999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.75979506370000005" green="0.37324335650000001" blue="0.19205834399999999" alpha="0.84763553442544493" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
