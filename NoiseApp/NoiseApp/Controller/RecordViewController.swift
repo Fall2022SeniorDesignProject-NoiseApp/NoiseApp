@@ -23,16 +23,18 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var alertCurrent: UILabel!
     @IBOutlet weak var alertSession: UILabel!
     
-    let shapeLayer = CAShapeLayer()
+    var shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
     let OFFSET: Float = 0.1
     let MIN_DB: Float = 0
-    let MAX_DB: Float = 115
+    let MAX_DB: Float = 90
     
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
     var averageTimer = Timer()
     var sessionLengthTimer = Timer()
+    var basicAnimation: CABasicAnimation!
+    var dB: Float = 0.0
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
     var sessionIdentifier = 0
@@ -44,7 +46,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        resetButton.isEnabled = false
         // Sets the default color to light mode
         link.isDarkMode = false
         configureProgressBar()
@@ -57,6 +59,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     override func viewWillAppear(_ animated: Bool)
     {
         setColorMode()
+        if (!resetButton.isEnabled)
+        {
+            shapeLayer.strokeColor = view.backgroundColor!.cgColor
+        }
     }
     
     func setColorMode()
@@ -88,7 +94,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         // create my track layer
         let trackLayer = CAShapeLayer()
         
-        let circularPath = UIBezierPath(arcCenter: center, radius: 135, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 150, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         trackLayer.path = circularPath.cgPath
                 
         trackLayer.strokeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
@@ -98,8 +104,6 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         view.layer.addSublayer(trackLayer)
         
         shapeLayer.path = circularPath.cgPath
-        
-        shapeLayer.strokeColor = #colorLiteral(red: 0.9490196078, green: 0.3960784314, blue: 0.1333333333, alpha: 1)
         shapeLayer.lineWidth = 10
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -112,9 +116,11 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // rename this method and the UIButton
     @IBAction func pressedActionBtn(_ sender: UIButton)
     {
+        resetButton.isEnabled = true
         alertSession.isHidden = true
         if (actionButton.tag == 0)
         {
+            resetButton.isEnabled = true
             // begin recording
             let symbol = UIImage(systemName: "pause.circle")
             actionButton.setImage(symbol, for: .normal)
@@ -146,7 +152,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     func monitorDecibels()
     {
-        let dB = link.getDecibelValue()
+        dB = link.getDecibelValue()
         if (dB >= link.boundHigh)
         {
             //let dB = link.getMaxDecibel()
@@ -178,7 +184,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         let dB = link.getDecibelValue()
         let normalizedValue = (dB - MIN_DB) / (MAX_DB - MIN_DB)
         
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         // progress bar fills up at 0.9
         basicAnimation.toValue = normalizedValue - OFFSET
@@ -189,6 +195,15 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         basicAnimation.isRemovedOnCompletion = false
         
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+                
+        if (dB > MAX_DB)
+        {
+            shapeLayer.strokeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        }
+        else
+        {
+            shapeLayer.strokeColor = #colorLiteral(red: 0.9490196078, green: 0.3960784314, blue: 0.1333333333, alpha: 1)
+        }
     }
     
     @objc func averageTimerCallback()
@@ -205,7 +220,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @objc func sessionTimerCallback()
     {
         sessionLength += 0.01
-        sessionTimer.text = String(format: "%.2f", sessionLength)
+        sessionTimer.text = String(format: "%.0f", sessionLength)
     }
     
     func resetReadings()
@@ -218,6 +233,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     func resetRecording()
     {
+        resetButton.isEnabled = false
         actionButton.isEnabled = true
         leqValues.removeAll()
                 
@@ -227,7 +243,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         self.levelTimer.invalidate()
         self.averageTimer.invalidate()
         self.sessionLengthTimer.invalidate()
-        self.sessionTimer.text = "0.00"
+        self.sessionTimer.text = "0"
         sessionLength = 0.00
     }
     
@@ -268,7 +284,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         actionButton.setImage(symbol, for: .normal)
         actionButton.tag = 0
         saveSessionButton.isEnabled = false
-
+        shapeLayer.strokeColor = view.backgroundColor!.cgColor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -287,8 +303,8 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     }
     
     
-    @IBAction func exitedSettings(_ sender: UIButton)
-    {
-        setColorMode()
-    }
+//    @IBAction func exitedSettings(_ sender: UIButton)
+//    {
+//        setColorMode()
+//    }
 }

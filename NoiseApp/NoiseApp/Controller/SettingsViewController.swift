@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController
     @IBOutlet weak var toggleNIOSH: UIButton!
     @IBOutlet weak var toggleOSHA: UIButton!
     @IBOutlet weak var colorSwitch: UISwitch!
+        
     
     let OSHA_LOWBOUND: Float = 70.0
     let OSHA_HIGHBOUND: Float = 90.0
