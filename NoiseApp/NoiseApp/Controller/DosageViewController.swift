@@ -47,6 +47,8 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        maximumSafeTime.textColor = #colorLiteral(red: 0.8983239532, green: 0.8976963162, blue: 0.9152712822, alpha: 1)
+        percentDosage.textColor = #colorLiteral(red: 0.8983239532, green: 0.8976963162, blue: 0.9152712822, alpha: 1)
         UserDefaults.standard.removeObject(forKey: "savedSessions")
 //        doseReadout.isHidden = true
 //        doseInput.delegate = self
@@ -82,7 +84,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     }
     
     func importSession() {
-        if currentSessionLength > 2.0 {
+        if currentSessionLength ?? 0.0 > 2.0 {
             sessionLEQ.text = String(format: "%.0f", currentSessionLEQ)
             hearingProtection.text = String("0")
             sessionLength.text = String(format: "%.2f", currentSessionLength)

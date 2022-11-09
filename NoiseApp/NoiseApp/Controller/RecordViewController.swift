@@ -23,6 +23,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var alertCurrent: UILabel!
     @IBOutlet weak var alertSession: UILabel!
     
+    @IBOutlet weak var dbLabel: UILabel!
     var shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
     let OFFSET: Float = 0.1
@@ -37,6 +38,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var dB: Float = 0.0
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
+    var saved = false
     var sessionIdentifier = 0
     var sessionLength: Float = 0.00
     var leqValues: [Float] = []
@@ -199,10 +201,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if (dB > MAX_DB)
         {
             shapeLayer.strokeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            dbLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         }
         else
         {
-            shapeLayer.strokeColor = #colorLiteral(red: 0.9490196078, green: 0.3960784314, blue: 0.1333333333, alpha: 1)
+            shapeLayer.strokeColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
+            dbLabel.textColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
+
         }
     }
     
@@ -225,9 +230,9 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     func resetReadings()
     {
-        decibel.text = String(00)
-        maxDecibel.text = String(00)
-        averageDecibel.text = String(00)
+        decibel.text = String(format: "00")
+        maxDecibel.text = String(format: "00")
+        averageDecibel.text = String(format: "00")
         link.clearMaxDecibel()
     }
     
@@ -261,6 +266,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         popup.addAction(saveAction)
         popup.addAction(saveOptionRejected)
         present(popup, animated: true)
+        saved = true
     }
     
     func pauseRecording()
@@ -292,8 +298,10 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if segue.identifier == "goToDosage"
         {
             let destinationVC = segue.destination as! DosageViewController
-            destinationVC.currentSessionLEQ = avgDB
-            destinationVC.currentSessionLength = sessionLength
+            if (saved == true) {
+                destinationVC.currentSessionLEQ = avgDB
+                destinationVC.currentSessionLength = sessionLength
+            }
         }
     }
     
