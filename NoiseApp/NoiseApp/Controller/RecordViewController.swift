@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import SwiftUI
+import AudioToolbox
 
 class RecordViewController: UIViewController, AVAudioRecorderDelegate
 {
@@ -26,13 +27,12 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var dbLabel: UILabel!
     var shapeLayer = CAShapeLayer()
     let REFRESH_RATE = 0.00001
-    let OFFSET: Float = 0.1
-    let MIN_DB: Float = 0
-    let MAX_DB: Float = 90
+    let OFFSET: Float = 0.1    
     
     var audioRecorder: AVAudioRecorder!
     var levelTimer = Timer()
-    var averageTimer = Timer()
+    var vibrateTimer = Timer()
+    var averageTimer = Timer()    
     var sessionLengthTimer = Timer()
     var basicAnimation: CABasicAnimation!
     var dB: Float = 0.0
@@ -60,6 +60,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     // Runs every time this views appears on screen
     override func viewWillAppear(_ animated: Bool)
     {
+        maxDB = (link.getCurrentExchangeRate() == "OSHA") ? 90.0 : 85.0
         setColorMode()
         if (!resetButton.isEnabled)
         {
@@ -167,12 +168,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
             alertSession.isHidden = false
             alertCurrent.isHidden = false
         }
-        else {
+        else
+        {
             alertCurrent.isHidden = true
         }
         
     }
-    
+        
     @objc func levelTimerCallback()
     {
         audioRecorder.updateMeters()
@@ -184,7 +186,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         monitorDecibels()
                 
         let dB = link.getDecibelValue()
-        let normalizedValue = (dB - MIN_DB) / (MAX_DB - MIN_DB)
+        let normalizedValue = (dB - 0) / (maxDB - 0)
         
         basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
@@ -198,17 +200,27 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
                 
-        if (dB > MAX_DB)
+        if (dB > maxDB)
         {
             shapeLayer.strokeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             dbLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(vibrateOnQueue), userInfo: nil, repeats: false)
         }
         else
         {
             shapeLayer.strokeColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
             dbLabel.textColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
-
         }
+    }
+    
+    @objc func vibrateOnQueue()
+    {
+        audioRecorder.stop()
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+        audioRecorder.delegate = self
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
     }
     
     @objc func averageTimerCallback()
@@ -284,6 +296,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     
     @IBAction func ResetButtonPressed(_ sender: UIButton)
     {
+        self.vibrateTimer.invalidate()
         resetRecording()
         resetReadings()
         let symbol = UIImage(systemName: "record.circle")

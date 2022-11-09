@@ -144,10 +144,12 @@ class DecibelManager
     
     func getCurrentExchangeRate() -> String
     {
-        if (boundHigh == NIOSH_HIGHBOUND) {
+        if (boundHigh == NIOSH_HIGHBOUND)
+        {
             return "NIOSH"
         }
-        else if (boundHigh == OSHA_HIGHBOUND) {
+        else if (boundHigh == OSHA_HIGHBOUND)
+        {
             return "OSHA"
         }
         else
