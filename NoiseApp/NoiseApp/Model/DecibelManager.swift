@@ -25,6 +25,7 @@ class DecibelManager
     
     var boundLow: Float!
     var boundHigh: Float!
+    var threshold = 80
     var dB: Float!
     var isDarkMode: Bool!
     
@@ -126,9 +127,33 @@ class DecibelManager
         boundLow = number
     }
     
+    func setThreshold(inputThres: Int)
+    {
+        threshold = inputThres
+    }
+    
+    func getThreshold() -> Int
+    {
+        return threshold
+    }
+    
     func clearMaxDecibel()
     {
         maxDB = 0.0
+    }
+    
+    func getCurrentExchangeRate() -> String
+    {
+        if (boundHigh == NIOSH_HIGHBOUND) {
+            return "NIOSH"
+        }
+        else if (boundHigh == OSHA_HIGHBOUND) {
+            return "OSHA"
+        }
+        else
+        {
+            return "CUSTOM"
+        }
     }
     
     func maxTimeAllowed(decibelIn: Float) -> Float
@@ -136,17 +161,28 @@ class DecibelManager
         return 8 / (powf(2, (decibelIn - 90) / 5))
     }
     
-    func dosagePerTime(decibelIn: Float, minutes: Int) -> Float
+    func dosagePerTime(decibelIn: Float, minutes: Int, threshold: Int, exchangeRate: Int) -> Float
     {
-        return Float(minutes)/(60 * 8/(powf(2, (decibelIn - 90) / 5)))
+        if (decibelIn < Float(threshold)) {
+            return 0
+        }
+        else {
+            return Float(minutes)/(60 * 8/(powf(2, (decibelIn - 90) / Float(exchangeRate))))
+        }
     }
     
-    func dosagePerTimeWithProtection(decibelIn: Float, minutes: Int, NRR: Int) -> Float
+    func dosagePerTimeWithProtection(decibelIn: Float, minutes: Int, NRR: Int, threshold: Int, exchangeRate: Int) -> Float
     {
         let adjustedDecibel: Float = decibelIn - 90.0
         let adjustedNRR: Float = (Float(NRR) - 7.0)/2.0
         let exponent = adjustedDecibel - adjustedNRR
-        return Float(minutes)/(60 * 8/(powf(2, Float(exponent/5))))
+        if (decibelIn < Float(threshold)) {
+            return 0
+        }
+        else {
+            return Float(minutes)/(60 * 8/(powf(2, Float(exponent/Float(exchangeRate)))))
+
+        }
     }
     
     func setDarkMode(value: Bool)

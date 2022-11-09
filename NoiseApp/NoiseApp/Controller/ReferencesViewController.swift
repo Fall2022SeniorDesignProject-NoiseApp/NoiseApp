@@ -18,7 +18,7 @@ class ReferencesViewController: UIViewController
             view.backgroundColor = #colorLiteral(red: 0.04705882353, green: 0.137254902, blue: 0.2509803922, alpha: 1)
         }
         else {
-            view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         }
     }
 
