@@ -25,6 +25,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var RecHearProt: UITextField!
     @IBOutlet weak var toggleProtectionEffect: UIButton!
     @IBOutlet weak var midDisplay: UIView!
+    @IBOutlet weak var resetButton: UIButton!
     
     @IBOutlet weak var exchangeRateLabel: UILabel!
     @IBOutlet weak var bottomDisplay: UIView!
@@ -49,7 +50,6 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         super.viewDidLoad()
         maximumSafeTime.textColor = #colorLiteral(red: 0.8983239532, green: 0.8976963162, blue: 0.9152712822, alpha: 1)
         percentDosage.textColor = #colorLiteral(red: 0.8983239532, green: 0.8976963162, blue: 0.9152712822, alpha: 1)
-        UserDefaults.standard.removeObject(forKey: "savedSessions")
 //        doseReadout.isHidden = true
 //        doseInput.delegate = self
         if (link.getCurrentExchangeRate() == "OSHA")
@@ -80,6 +80,9 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         if (userDefault.value(forKey: "savedSessions") != nil) {
             let data = UserDefaults.standard.object(forKey: "savedSessions") as? Data
             savedSessions = try! JSONDecoder().decode([soundSession].self, from: data!)
+        }
+        else {
+            resetButton.isEnabled = false
         }
     }
     
@@ -207,7 +210,14 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
             updateAllOutputs(isProtectionOn: false)
             isProtectionOn = false
         }
-        print(savedSessions)
+    }
+    
+    @IBAction func pressedResetButton(_ sender: UIButton)
+    {
+        UserDefaults.standard.removeObject(forKey: "savedSessions")
+        savedSessions.removeAll()
+        resetButton.isEnabled = false
+        clearAll()
     }
     
     
@@ -224,6 +234,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
             previousSessionButton.isEnabled = true
             latestSession = savedSessions[savedSessions.count - 1]
             currentSessionIndex += 1
+            resetButton.isEnabled = true
         }
         else {
             print("Session has already been saved")

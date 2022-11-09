@@ -125,7 +125,7 @@ class SettingsViewController: UIViewController
     {
         if link.isDarkMode
         {
-            view.backgroundColor = #colorLiteral(red: 0.04705882353, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+            view.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
             standardLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             thresholdLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             colorSwitch.setOn(true, animated: true)
