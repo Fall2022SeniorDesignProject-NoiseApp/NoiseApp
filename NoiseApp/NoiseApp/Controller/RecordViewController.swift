@@ -73,7 +73,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         if link.isDarkMode
         {
             view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
-            decibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            //decibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             maxDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             averageDecibel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             sessionTimer.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -81,7 +81,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         else
         {
             view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            decibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            //decibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             maxDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             averageDecibel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             sessionTimer.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -204,13 +204,14 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         {
             shapeLayer.strokeColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             dbLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            decibel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(vibrateOnQueue), userInfo: nil, repeats: false)
         }
         else
         {
             shapeLayer.strokeColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
             dbLabel.textColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)
-        }
+            decibel.textColor = #colorLiteral(red: 0, green: 0.4823529412, blue: 0.3098039216, alpha: 1)        }
     }
     
     @objc func vibrateOnQueue()
