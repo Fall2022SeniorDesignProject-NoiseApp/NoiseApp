@@ -92,6 +92,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
             hearingProtection.text = String("0")
             sessionLength.text = String(format: "%.2f", currentSessionLength)
             maxTimeAllowed()
+            calculateNRR()
         }
         totalLength.text = "0.0"
     }
@@ -103,6 +104,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         totalLength.text = ""
         percentDosage.text = ""
         maximumSafeTime.text = ""
+        RecHearProt.text = ""
     }
     
     func maxTimeAllowed() {
@@ -150,10 +152,27 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         
     }
 
+    //handles calculation and presentation of Hearing Protection Recommendation
+    func calculateNRR() {
+        var currentNRR: Float! = 26
+        let Leq: Float! = (sessionLEQ.text! as NSString).floatValue
+        if (Leq > link.boundHigh) {
+            if (isProtectionOn) {
+                currentNRR = (hearingProtection.text! as NSString).floatValue
+            }
+            let nrr = (ceil((Leq - link.boundHigh) * 2) + currentNRR)
+            RecHearProt.text = String(nrr) + " NRR or greater"
+        }
+        else {
+            RecHearProt.text = "N/A"
+        }
+    }
+    
     
     func updateAllOutputs(isProtectionOn: Bool) {
         maxTimeAllowed()
         sessionPercentDosage(isProtectionOn: isProtectionOn)
+        calculateNRR()
     }
 
     @IBAction func returnHome(_ sender: UIButton)
@@ -226,7 +245,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     {
         if (sessionHasBeenSaved == false)
         {
-            let session = soundSession(LEQ: Float(sessionLEQ.text!)!, sessionTime: Float(sessionLength.text ?? "0") ?? 0.0, totalTime: Int(totalLength.text!)!, isProtectionOn: isProtectionOn, protectionNRR: Int(hearingProtection.text!)!, index: currentSessionIndex)
+            let session = soundSession(LEQ: Float(sessionLEQ.text!)!, sessionTime: Float(sessionLength.text ?? "0") ?? 0.0, totalTime: Int(totalLength.text!)!, isProtectionOn: isProtectionOn, protectionNRR: Int(hearingProtection.text!) ?? 0, index: currentSessionIndex)
             savedSessions.append(session)
             sessionHasBeenSaved = true
             clearAll()

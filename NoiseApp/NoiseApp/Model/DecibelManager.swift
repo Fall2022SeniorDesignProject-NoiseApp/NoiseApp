@@ -89,11 +89,11 @@ class DecibelManager
     {
         return String(format: "%.0f", maxDB)
     }
-    
-    func getProtectionRec() -> String
-    {
-        return decibelData?.recommendation ?? "N/A"
-    }
+    //unused
+    //func getProtectionRec() -> String
+    //{
+    //    return decibelData?.recommendation ?? "N/A"
+    //}
     
     func getTintColor() -> UIColor
     {
