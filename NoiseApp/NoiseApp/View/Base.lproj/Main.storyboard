@@ -330,24 +330,33 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gmd-ER-oPW" userLabel="Bottom View">
                                         <rect key="frame" x="0.0" y="422" width="361" height="210"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-wg-ed0" userLabel="Alerts">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-wg-ed0" userLabel="Alerts">
                                                 <rect key="frame" x="0.0" y="0.0" width="361" height="210"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pI-rv-Rcz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="ZDC-DC-0sX"/>
+                                                        </constraints>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert: Currently above Maximum dB!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-42-hwP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="361" height="149"/>
+                                                        <rect key="frame" x="0.0" y="56.666666666666629" width="361" height="52.666666666666657"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert: Exceeded Maximum dB during this Session!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9V3-0u-vkR">
-                                                        <rect key="frame" x="0.0" y="150" width="361" height="60"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="dnh-A7-5PY"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="125.66666666666664" width="361" height="52.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                         <color key="textColor" red="0.94901960780000005" green="0.39607843139999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ID5-Uz-wgG" userLabel="bott">
+                                                        <rect key="frame" x="0.0" y="195" width="361" height="15"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="15" id="kM3-Hl-HZm"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
