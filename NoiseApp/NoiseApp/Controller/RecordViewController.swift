@@ -35,6 +35,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var averageTimer = Timer()    
     var sessionLengthTimer = Timer()
     var basicAnimation: CABasicAnimation!
+    var exceededThreshold = false
     var dB: Float = 0.0
     var maxDB: Float = 0.0
     var avgDB: Float = 0.0
@@ -120,7 +121,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     @IBAction func pressedActionBtn(_ sender: UIButton)
     {
         resetButton.isEnabled = true
-        alertSession.isHidden = true
+        alertSession.isHidden = (exceededThreshold) ? false : true
         if (actionButton.tag == 0)
         {
             resetButton.isEnabled = true
@@ -145,8 +146,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         }
         else
         {
-            // end recording
-            let symbol = UIImage(systemName: "play.circle")
+            let symbol = UIImage(systemName: "record.circle")            
             actionButton.setImage(symbol, for: .normal)
             actionButton.tag = 0
             pauseRecording()
@@ -165,6 +165,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
             
             //popup.addAction(dismiss)
             //present(popup, animated: true)
+            exceededThreshold = true
             alertSession.isHidden = false
             alertCurrent.isHidden = false
         }
@@ -246,6 +247,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         decibel.text = String(format: "00")
         maxDecibel.text = String(format: "00")
         averageDecibel.text = String(format: "00")
+        alertSession.isHidden = true
         link.clearMaxDecibel()
     }
     
@@ -254,7 +256,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         resetButton.isEnabled = false
         actionButton.isEnabled = true
         leqValues.removeAll()
-                
+        exceededThreshold = false
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
