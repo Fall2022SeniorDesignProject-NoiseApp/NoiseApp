@@ -44,6 +44,7 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
     var sessionLength: Float = 0.00
     var leqValues: [Float] = []
     let link = DecibelManager.sharedInstance
+    let screenSize: CGRect = UIScreen.main.bounds
     
     // Runs the first time the app is loaded into memory
     override func viewDidLoad()
@@ -52,10 +53,13 @@ class RecordViewController: UIViewController, AVAudioRecorderDelegate
         resetButton.isEnabled = false
         // Sets the default color to light mode
         link.isDarkMode = false
-        configureProgressBar()
+        (screenSize.height >= 700) ? configureProgressBar() : print("disabled progress bar (screen is too small)")
         saveSessionButton.isEnabled = false
         alertCurrent.isHidden = true
         alertSession.isHidden = true
+//        print("Your screen size: \(screenSize)")
+//        print("Your screen size width: \(screenSize.width)")
+//        print("Your screen size height: \(screenSize.height)")
     }
     
     // Runs every time this views appears on screen
