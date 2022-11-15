@@ -24,7 +24,6 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var nextSessionButton: UIButton!
     @IBOutlet weak var RecHearProt: UITextField!
     @IBOutlet weak var toggleProtectionEffect: UIButton!
-    //@IBOutlet weak var midDisplay: UIView!
     @IBOutlet weak var resetButton: UIButton!
     
     @IBOutlet weak var exchangeRateLabel: UILabel!
@@ -76,14 +75,23 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
 
 
         }
+        
         importSession()
         if (userDefault.value(forKey: "savedSessions") != nil) {
             let data = UserDefaults.standard.object(forKey: "savedSessions") as? Data
             savedSessions = try! JSONDecoder().decode([soundSession].self, from: data!)
         }
-        else {
-            resetButton.isEnabled = false
-        }
+//        else {
+//            resetButton.isEnabled = false
+//        }
+    }
+    
+    @IBAction func onTapGestureRecognizer(_ sender: UITapGestureRecognizer)
+    {
+        hearingProtection.resignFirstResponder()
+        sessionLEQ.resignFirstResponder()
+        sessionLength.resignFirstResponder()
+        totalLength.resignFirstResponder()
     }
     
     func importSession() {
@@ -94,7 +102,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
             maxTimeAllowed()
             calculateNRR()
         }
-        totalLength.text = "0.0"
+        //totalLength.text = "0.0"
     }
     
     func clearAll() {
@@ -114,7 +122,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         let dosage = round(doseIn * 10) / 10
         let dosagePrecise = round(doseIn * 100) / 100
         if (doseIn >= 24.0) {
-            maximumSafeTime.text = "24+ Hours. You are safe."
+            maximumSafeTime.text = "24+ Hours"
         }
         else if (doseIn <= 0.0) {
             maximumSafeTime.text = "0 Hours. DANGER."
@@ -136,7 +144,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
                 percentDosage.text = String(format: "%.2f", processedDoseIn)
             }
             else {
-                percentDosage.text = "Total Time Not Given"
+                percentDosage.text = "Time Not Given"
             }
         }
         else if isProtectionOn == true {
@@ -146,7 +154,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
                 percentDosage.text = String(format: "%.2f", processedDoseIn)
             }
             else {
-                percentDosage.text = "Total Time Not Given"
+                percentDosage.text = "Time Not Given"
             }
         }
         
@@ -235,11 +243,9 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     {
         UserDefaults.standard.removeObject(forKey: "savedSessions")
         savedSessions.removeAll()
-        resetButton.isEnabled = false
+        //resetButton.isEnabled = false
         clearAll()
     }
-    
-    
     
     @IBAction func pressedSaveButton(_ sender: UIButton)
     {
@@ -304,8 +310,6 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     
     }
 
-
-
 struct soundSession: Codable {
     var LEQ = Float()
     var sessionTime = Float()
@@ -314,7 +318,5 @@ struct soundSession: Codable {
     var protectionNRR = Int()
     var index = Int()
 }
-
-
 
 
