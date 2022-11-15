@@ -162,13 +162,9 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
 
     //handles calculation and presentation of Hearing Protection Recommendation
     func calculateNRR() {
-        var currentNRR: Float! = 26
         let Leq: Float! = (sessionLEQ.text! as NSString).floatValue
-        if (Leq > link.boundHigh) {
-            if (isProtectionOn) {
-                currentNRR = (hearingProtection.text! as NSString).floatValue
-            }
-            let nrr = (ceil((Leq - link.boundHigh) * 2) + currentNRR)
+        if (Leq >  Float(link.getThreshold())) {
+            let nrr = ceil((Leq - Float(link.getThreshold())) * 2)
             RecHearProt.text = String(nrr) + " NRR or greater"
         }
         else {
