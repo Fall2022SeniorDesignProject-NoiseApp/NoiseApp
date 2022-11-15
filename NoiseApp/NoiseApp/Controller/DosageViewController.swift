@@ -24,7 +24,7 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
     @IBOutlet weak var nextSessionButton: UIButton!
     @IBOutlet weak var RecHearProt: UITextField!
     @IBOutlet weak var toggleProtectionEffect: UIButton!
-    @IBOutlet weak var midDisplay: UIView!
+    //@IBOutlet weak var midDisplay: UIView!
     @IBOutlet weak var resetButton: UIButton!
     
     @IBOutlet weak var exchangeRateLabel: UILabel!
@@ -64,12 +64,12 @@ class DosageViewController: UIViewController, AVAudioRecorderDelegate
         }
         if link.isDarkMode {
             view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
-            midDisplay.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
+            //midDisplay.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.2431372549, blue: 0.4549019608, alpha: 1)
         }
         else {
             view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            midDisplay.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            bottomDisplay.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
+            //midDisplay.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            //bottomDisplay.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
             percentDosage.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
             maximumSafeTime.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
             RecHearProt.backgroundColor = #colorLiteral(red: 0.07348891348, green: 0.2447949052, blue: 0.4540714025, alpha: 1)
